@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.BeepDataActivity">
+
+    <include
+        android:id="@+id/v_toolbar"
+        layout="@layout/view_toolbar" />
+
+    <TextView
+        android:id="@+id/tvHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/v_toolbar"
+        tools:text="Bulan Ke" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/llproses"
+        app:layout_constraintTop_toBottomOf="@id/tvHeader">
+
+        <include layout="@layout/error_layout" />
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:background="@drawable/border">
+
+                        <TextView
+                            android:layout_width="85dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:textAlignment="center" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="#000000" />
+
+
+                        <TextView
+                            android:layout_width="70dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="Nama"
+                            android:textAlignment="center" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="#000000" />
+
+                        <TextView
+                            android:layout_width="70dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="Usia"
+                            android:textAlignment="center" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="#000000" />
+
+                        <TextView
+                            android:layout_width="70dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="JK"
+                            android:textAlignment="center" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="#000000" />
+
+                        <TextView
+                            android:layout_width="70dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="Level"
+                            android:textAlignment="center" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="#000000" />
+
+                        <TextView
+                            android:layout_width="70dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="Shuttle"
+                            android:textAlignment="center" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="#000000" />
+
+                        <TextView
+                            android:layout_width="70dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="V02Max"
+                            android:textAlignment="center" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="#000000" />
+
+                        <TextView
+                            android:layout_width="70dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="Tingkat Kebugaran"
+                            android:textAlignment="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/minggu1"
+                        android:background="@drawable/border">
+
+                        <TextView
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="Minggu 1"
+                            android:textAlignment="center" />
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvminggu1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="500"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/row_data_beep" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/minggu2"
+                        android:background="@drawable/border">
+
+                        <TextView
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="Minggu 2"
+                            android:textAlignment="center" />
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvminggu2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="500"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/row_data_beep" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/minggu3"
+                        android:background="@drawable/border">
+
+                        <TextView
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="Minggu 3"
+                            android:textAlignment="center" />
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvminggu3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="500"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/row_data_beep" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/minggu4"
+                        android:background="@drawable/border">
+
+                        <TextView
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="Minggu 4"
+                            android:textAlignment="center" />
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvminggu4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="500"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/row_data_beep" />
+                    </TableRow>
+                </TableLayout>
+            </HorizontalScrollView>
+        </ScrollView>
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/llproses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/btnDellAll"
+            style="@style/LayoutButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/dell_all" />
+
+        <Button
+            android:id="@+id/btnGrafik"
+            style="@style/LayoutButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/grafik" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

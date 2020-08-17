@@ -1,0 +1,218 @@
+<resources>
+    <string name="app_name">Atlit</string>
+    <string name="user_id">User ID</string>
+    <string name="password">Password</string>
+    <string name="atlit">Atlit</string>
+    <string name="pelatih">Pelatih</string>
+    <string name="nama">Nama</string>
+    <string name="tanggal">Tanggal Lahir</string>
+    <string name="cabang_olahraga">Cabang Olahraga</string>
+    <string name="username">Username</string>
+    <string name="simpan">Simpan</string>
+    <string name="hapus">Hapus</string>
+    <string name="daftar_pelatih">DAFTAR PELATIH</string>
+    <string name="daftar_atlit">DAFTAR ATLIT</string>
+    <string name="tinggi_badan_cm">Tinggi Badan (cm)</string>
+    <string name="berat_badan">Berat Badan</string>
+    <string name="jenis_kelamin">Jenis Kelamin</string>
+    <string name="laki_laki">Laki-Laki</string>
+    <string name="perempuan">Perempuan</string>
+    <string name="profile">Profile</string>
+    <string name="tentang_kebugaran">Tentang Kebugaran</string>
+    <string name="metode">Metode</string>
+    <string name="program_test">Program Test</string>
+    <string name="keluar">Keluar</string>
+    <string name="information">Informasi</string>
+    <string name="please_wait">Silahkan tunggu...</string>
+    <string name="login">Login</string>
+    <string name="daftar">Daftar</string>
+    <string name="permission_not_granted">Permintaan tidak diizinkan</string>
+    <string name="all_permission_granted">Semua permintaan diizinkan</string>
+    <string name="all_permission_not_granted">Semua permintaan tidak diizinkan </string>
+    <string name="write_external_permission_not_granted">Tulis permintaan penyimpanan eksternal yang tidak diizinkan</string>
+    <string name="read_external_permission_not_granted">Baca permintaan penyimpanan eksternal yang tidak diizinkan</string>
+    <string name="menu_atlit">Menu Atlit</string>
+    <string name="menu_pelatih">Menu Pelatih</string>
+    <string name="kebugaran">KEBUGARAN</string>
+    <string name="vo2max">VO2MAX</string>
+    <string name="cooper">Cooper Test</string>
+    <string name="cooper2">Cooper</string>
+    <string name="bugar_1">- Kebugaran adalah kemampuan dan daya tahan fisik seseorang dalam melakukan berbagai aktifitas kehidupan sehari-hari, tanpa mengalami kelelahan. </string>
+    <string name="bugar_2">- Daya tahan merupakan salah satu komponen biometer atau dasar dalam setiap cabang olahraga. Komponen biokmeter daya tahan digunakan sebagai tolak ukur untuk mengetahui tentang kebugaran (Physical fitness) olahragawan.</string>
+    <string name="vo2max1">- Vo2max adalah volume maksimal O2, Yang diproses oleh tubuh pada saat melakukan kegiatan yang intensif.</string>
+    <string name="vo2maz2">- VO2MAX merupakan indikator tingkat kebugaran seseorang untuk dijadikan sebagai dasar pembuatan program latihan daya tahan fisik olahragawan. Untuk mengukur VO2MAX, ada beberapa tes yang lazim digunakan, yaitu : Cooper, Balke, dan Beep Test.</string>
+    <string name="beep">Beep</string>
+    <string name="balke">Balke</string>
+    <string name="balke_vo2max">Balke vo2max</string>
+    <string name="cooper_vo2max">Cooper vo2max</string>
+    <string name="no">No</string>
+    <string name="nama_numur_njk">Nama\nUmur\nJK</string>
+    <string name="jarak_n_meter">Jarak (Meter)</string>
+    <string name="waktu">Waktu</string>
+    <string name="level">Level</string>
+    <string name="bulan_nminggu">Bulan Minggu</string>
+    <string name="Information">Information</string>
+    <string name="Please_Wait">Please Wait</string>
+    <string name="grafik">Grafik</string>
+    <string name="dell_all">Dell All</string>
+    <string name="balke_data">Balke Data</string>
+    <string name="balke_pelatih">Balke Pelatih</string>
+    <string name="balke_atlit">Balke Atlit</string>
+    <string name="cooper_data">Cooper Data</string>
+    <string name="cooper_pelatih">Cooper Pelatih</string>
+    <string name="cooper_atlit">Cooper Atlit</string>
+    <string name="error">Error</string>
+    <string name="retry">Retry</string>
+    <string name="error_msg_unknown">Terjadi kesalahan tak terduga</string>
+    <string name="error_msg_no_internet">Tidak ada koneksi internet</string>
+    <string name="error_msg_timeout">Server butuh waktu terlalu lama untuk merespons</string>
+    <string name="beep_test">Beep Test</string>
+    <string name="parameter">Parameter</string>
+    <string name="suara">Suara</string>
+    <string name="simpan_data">Simpan Data</string>
+    <string name="umur">Umur</string>
+    <string name="kebugaran1">- Kebugaran adalah kemampuan dan daya tahan fisik seseorang
+dalam melakukan berbagai aktifitas kehidupan sehari-hari,
+tanpa mengalami kelelahan. (Dibawah dalam kotak gambar)
+\n\n
+- Daya tahan merupakan salah satu komponen biometer atau dasar dalam
+setiap cabang olahraga. Komponen biokmeter daya tahan digunakan
+sebagai tolak ukur untuk mengetahui tentang kebugaran (physical
+fitness) olahragawan. (Dibawah kotak gambar)</string>
+    <string name="kebugaran2">\tDaya tahan adalah kemampuan seseorang dalam memakai organ tubuhnya
+seperti jantung dan paru-pari secara efektif dan efisien dalam
+melakukan aktifitasnya.
+\n\nContoh latihan yang meningkatkan daya tahan tubuh, yaitu:
+\n1. Lari 2,4 km
+\n2. Lari 12 menit
+\n3. Lari multistage
+\n4. Lari naik turun bukit</string>
+    <string name="vo2maxdesc">Vo2max adalah volume maksimal O2, yang diporses oleh tubuh pada saat
+melakukan kegiatan yang intensif (didal kotak bawah gambar).
+
+\n\nVo2max merupakan indikator tingkat kebugaran seseorang untuk dijadikan sebagai
+dasar pembuatan program latihan daya tahan fisik olahragawan. Untuk mengukur
+Vo2max, ada beberapa tes yang lazim digunakan, yaitu: Cooper, Balke, dan
+Beep test.</string>
+
+    <string name="cooperdata1">\tCooper adalah salah satu bentuk tes lapangan untuk mengukur tingkat kebugaran
+jasmani seseorang yang dilakukan lari 2,4 km.</string>
+
+    <string name="cooperdata2">Cara melakukan tes lari 2,4 Km \nDalam tes ini akan melibatkan atlet
+untuk melakukan lari 2,4 km (6 lap dari track yang telah ditentukan) dengan
+lari secepat mungkin.
+\n\n
+Cara melakukan tes:
+\n1. Atlet melakukan pemanasan selama 10 menit
+\n\n2. Asisten mulai memberi perintah "GO", mulai stopwatch dan atlet mulai lari.
+\n\n3. Asisten memberi tahu atlet tentang waktu yang ditempuh atlet diakhir putaran
+masing-masing dan jumlah lap yang tersisa.
+\n\n4. Catatan asisten waktu yang dibutuhkan untuk setiap lap dan waktu
+yang dibutuhkan atlet yang menjalankan lari 2,4 Km</string>
+
+    <string name="cooperdata3">5. Waktu yang direkam untuk mengalaisis waktu kinerja atlet.
+
+\n\nRumus penghitung:
+\nVo2max = 85.95 - (3.079 x time)
+\nKet: time(menit)</string>
+
+    <string name="balkedata1">\tBalke adalah salah satu cara paling tua dalam memonitor dan mengukur
+perkembangan Vo2max bagi seorang atlit. Tes ini sangat umum digunakan oleh
+pelatih sepakbola sehingga mudah dimengerti bagi peserta.</string>
+    <string name="balkedata2">Cara melakukan tes lari 15 menit
+
+\n\nCara melakukan tes:
+\n1. Peserta tes berdiri digari start den bersikap untuk berlari
+secepat-cepatnya selama 15 menit.
+\n\n
+2. bersamaan dengan aba-aba "YA". peserta tes mulai berlari dengan pencatat
+waktu mulai menonkan stopwatch.
+\n\n
+3. Selama waktu 15 menit, pengetes memberi aba-aba berhenti, dimana bersamaan dengan
+itu stopwatch dimatikan dari peserta menancapkan bendera yang telah disiapkan sebagai
+penanda jarak yang telah ditempuhnya.
+\n\n
+4. Pengetes mengukur jarak yang ditempuh peserta tes yang telah ditempuh selama
+15 menit
+\n\n
+Rumus penghitung:
+Vo2max = 33.3 + (Jarak tempuh/15 menit - 133) x 0.172</string>
+    <string name="balkedata3">\tTujuan tes lari 15 menit adalah untuk menghitung prediksi Vo2max para olahragawan
+menggunakan jarak tempuh lari 15 menit
+\n\n
+Perlengkapan:
+\n- Lintasan datar sepanjang 220 meter dengan batas setiap jarak 10 meter.
+\n- Stopwatch
+\n- Asisten
+\n- Peluit
+</string>
+
+    <string name="beepdata1">Beep test adalah cara untuk mengukur kebugaran jasmani kita atau kemampuan seseorang
+melakukan aktivitas primer shari-hari tanpa merasa lelah dan masih mempunyai cukup tenaga
+untuk melakukan aktivitas yang lain. Test ini meliputi berlari terus menerus di antara
+dua garis yang berjarak 20 m selama terdengar suara beep yang sudah direkam sebelumnya.</string>
+    <string name="beepdata2">Cara melakukan tes:
+\n\n1. Ukurlah jarak 20 meter dan berikan tabda garis dengan menggunakan kapur.
+\n\n2. Perintahkan tes melakukan pemanasan secukupnya
+\n\n3. Start dilakukan dengan berdiri dan posisi kaki berada di belakang garis pada salah
+satu sisi. Dengan aba-aba "siap-ya" (sesuai dengan irama pada kaset), atlet lari sesuai
+dengan irama kaset menuju ke sisi yang berlawanan.
+\n\n4. Peserta tes harus berusaha sampai ke sisi berlawanan bertepatan dengan bunyi \"tut\"
+yang pertama dari kaset.
+\n\n5. Akhir setiap lari ditandai dengan sinyal \"tut\" tunggal, sedangkan akhir dari setiap
+leve ditandai dengan sinyal "tut" tiga kali.</string>
+    <string name="beepdata3">6. Bila tanda bunti \"tut\" belum terdengar saat atlet sampai pada sis berlawanan (atlet
+lebih cepat dari tempo), maka untuk lari balik harus menunggu tanda bunyi \"tut\".
+sebaliknya, jika atlet belum sampai pada sisi berlawanan namun sinyal bunti \"tut\"
+sudah terdengar (atlet lebih lambat dari pada tempo) maka atlet harus meningkatkan
+kecepatannya.
+
+\n\n7.Bila dua kali bunyi \"tut\" berururtan atlet tidak mampu mengikuti irama waktu lari
+berarti atlet tersebut sudah mencapai batsa maksimal dan tes dianggap sudah berakhir.
+
+\n\n8. Hasil tes yang berupa level dan balikan kemudian dicockan dengan norma tes
+yang berupa perdiksi Vo2max.
+</string>
+    <string name="beepdata4">Rumus penghitung:
+\nVo2max = 15 + (0.3689295 * Tb) + (0.000349 * Tb * Tb)
+\nTb = Total Kumulatif Balikan Level + Balikan</string>
+    <string name="start">Start</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="solusi">Saran</string>
+    <string name="solusi_untuk_meningkatkan_vo2max">Solusi Untuk Meningkatkan Vo2max:</string>
+    <string name="_1_memperbaiki_tekhnik_berlari">1.\tMemperbaiki Tekhnik Berlari</string>
+    <string name="lari_adalah_langkah_teratur_dengan_mengangkat_kaki_bergantian_secara_cepat_beberapa_hal_yang_perlu_diperhatikan_sebelum_berlari">Lari adalah langkah teratur dengan mengangkat kaki bergantian secara cepat. Beberapa hal yang perlu diperhatikan sebelum berlari :</string>
+    <string name="pilih_sepatu_berlari_yang_tepat">•\tPilih sepatu berlari yang tepat.</string>
+    <string name="pilih_pakaian_yang_nyaman_untuk_berlari">•\tPilih pakaian yang nyaman untuk berlari.</string>
+    <string name="mulailah_dengan_berjalan_sebeleum_berlari">•\tMulailah dengan berjalan sebeleum berlari.</string>
+    <string name="hal_yang_perlu_diperhatikan_tekhnik_saat_berlari">Hal yang perlu diperhatikan tekhnik saat berlari :</string>
+    <string name="ayunakan_lengan_dengan_rileks_dan_kontinyu_lengan_ditekuk_90_dan_mengayun_rileks_disamping_tubuh">Ayunakan lengan dengan rileks dan kontinyu ( lengan ditekuk 90⁰ dan mengayun rileks disamping tubuh ).</string>
+    <string name="point">•</string>
+    <string name="bernafas_dengan_teratur_tariklah_nafas_saat_2_langkah_sekali_dan_hembus_nafas_2_langkah_sekali">Bernafas dengan teratur. Tariklah nafas saat 2 langkah sekali, dan hembus nafas 2 langkah sekali.</string>
+    <string name="hindari_menekan_langkah_yang_terlalu_keras_ke_tanah_sebaliknya_melangkah_seolah_olah_mendorong_ke_depan">Hindari menekan langkah yang terlalu keras ke tanah, sebaliknya, melangkah seolah-olah mendorong ke depan.</string>
+    <string name="saat_mendarat_mendaratlah_dengan_telapak_bagian_tengah_agak_ke_depan">Saat mendarat, mendaratlah dengan telapak bagian tengah agak ke depan.</string>
+    <string name="badan_rileks_tidak_kaku_dan_sedikit_condong_kedepan">•\tBadan rileks tidak kaku dan sedikit condong kedepan.</string>
+    <string name="_2_latihan_endurance_daya_tahan">2. Latihan Endurance ( Daya Tahan )</string>
+    <string name="latihan_fisik_intensitas_rendah_dengan_durasi_panjang_dan_menggunakan_oksigen_sebagai_metabolisme_energi_latihan_ini_berguna_untuk_meningkatkan_vo2max">Latihan fisik intensitas rendah dengan durasi panjang dan menggunakan oksigen sebagai metabolisme energi. Latihan ini berguna untuk meningkatkan Vo2max.</string>
+    <string name="contoh_latihan">Contoh latihan :</string>
+    <string name="jogging_panjang_durasi_30_menit_sampai_2_jam">•\tJogging panjang durasi 30 menit sampai 2 jam.</string>
+    <string name="circuit_training">•\tCircuit training.</string>
+    <string name="skipping">•\tSkipping.</string>
+    <string name="senam">•\tSenam.</string>
+    <string name="renang">•\tRenang.</string>
+    <string name="yoga">•\tYoga.</string>
+    <string name="_3_latihan_speed_kecepatan">3.\tLatihan Speed ( Kecepatan )</string>
+    <string name="latihan_fisik_intensitas_tinggi_dengan_durasi_singkat_tanpa_menggunakan_oksigen_o2_karena_yang_diandalkan_pada_proses_latihan_ini_adalah_cadangan_energi_pada_otot_sehingga_tingkat_kelelahan_pada_proses_ini_lebih_tinggi_karena_latihan_speed_dapat_menimbukkan_asam_laktat">Latihan fisik intensitas tinggi dengan durasi singkat tanpa menggunakan oksigen (O2). Karena yang diandalkan pada proses latihan ini adalah cadangan energi pada otot. Sehingga tingkat kelelahan pada proses ini lebih tinggi karena latihan speed dapat menimbukkan asam laktat.</string>
+    <string name="lari_sprint_jarak_100_meter">•\tLari Sprint Jarak 100 meter.</string>
+    <string name="shuttle_run_jarak_4_meter_dilakukan_sebanyak_5x">•\tShuttle Run Jarak 4 meter dilakukan sebanyak 5x.</string>
+    <string name="lari_zig_zag">•\tLari Zig – Zag.</string>
+    <string name="lari_bereda_kecepatan">•\tLari Bereda Kecepatan.</string>
+    <string name="lari_menanjak">•\tLari Menanjak.</string>
+    <string name="lari_naik_turun_tangga">•\tLari Naik Turun Tangga.</string>
+    <string name="_7_istirahat_yang_cukup">7.\tIstirahat Yang cukup.</string>
+    <string name="_6_pola_hidup_yang_sehat">6.\tPola Hidup Yang Sehat.</string>
+    <string name="_5_asupan_protein_yang_seimbang">5.\tAsupan Protein Yang Seimbang.</string>
+    <string name="_4_asupan_nutrisi_dan_gizi_yang_seimbang">4.\tAsupan Nutrisi dan Gizi Yang Seimbang.</string>
+    <string name="saran">Solusi</string>
+</resources>
