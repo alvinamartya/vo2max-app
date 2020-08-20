@@ -1,6 +1,8 @@
 package com.example.atlit.Utils;
 
 import com.example.atlit.Model.BalkeGet;
+import com.example.atlit.Model.Beep;
+import com.example.atlit.Model.BeepGet;
 import com.example.atlit.Model.CooperGet;
 import com.example.atlit.Model.Process;
 import com.example.atlit.Model.getBalkeModel;
@@ -93,7 +95,7 @@ public interface ApiInterface {
     @POST("Cooper/getData")
     Call<getCooperModel> cooperdata(
             @Field("bulan") int bulan,
-            @Field("atlitid") int atlitid
+            @Field("userid") int userid
     );
 
     @FormUrlEncoded
@@ -128,8 +130,13 @@ public interface ApiInterface {
     @POST("balke/getData")
     Call<getBalkeModel> balkedata(
             @Field("bulan") int bulan,
-            @Field("userid") int userid,
-            @Field("role") String role
+            @Field("userid") int userid
+    );
+
+    @FormUrlEncoded
+    @POST("balke/getDataPelatih")
+    Call<getBalkeModel> balkeDataPelatih(
+            @Field("bulan") int bulan
     );
 
     @FormUrlEncoded
@@ -152,7 +159,7 @@ public interface ApiInterface {
             @Field("shuttle") int ahuttle,
             @Field("vo2max") float vo2max,
             @Field("tingkat_kebugaran") String tingkat_kebugaran,
-            @Field("atlitid") int atlitID
+            @Field("userid") int userid
     );
 
     @FormUrlEncoded
@@ -160,6 +167,12 @@ public interface ApiInterface {
     Call<getBeepModel> beepdata(
             @Field("bulan") int bulan,
             @Field("userid") int userid
+    );
+
+    @FormUrlEncoded
+    @POST("beep/getDataPelatih")
+    Call<getBeepModel> beepDataPelatih(
+            @Field("bulan") int bulan
     );
 
     @FormUrlEncoded
@@ -196,6 +209,12 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("Cooper/getListData")
     Call<List<CooperGet>> getListDataCooper(
+            @Field("cabor") String cabor
+    );
+
+    @FormUrlEncoded
+    @POST("beep/getListData")
+    Call<List<BeepGet>> getListDataBeep(
             @Field("cabor") String cabor
     );
 

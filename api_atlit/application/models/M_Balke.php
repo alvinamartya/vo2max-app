@@ -32,7 +32,6 @@ class M_Balke extends CI_Model
         $this->db->where('bulan', $bulan);
         $this->db->where('minggu', $minggu);
         $this->db->where('atlitid', $atlitid);
-        $this->db->order_by('umur', 'asc');
         return $this->db->get('balke')->result_array();
     }
 
@@ -40,7 +39,6 @@ class M_Balke extends CI_Model
     {
         $this->db->where('bulan', $bulan);
         $this->db->where('minggu', $minggu);
-        $this->db->order_by('umur', 'asc');
         return $this->db->get('balke')->result_array();
     }
 

@@ -9,11 +9,13 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.atlit.R;
+import com.example.atlit.Utils.Loginsharedpreference;
 
 public class BeepActivity extends AppCompatActivity {
 
-    private Button btnMulaiTest, btnPelari, btnParameter, btnPengaturan;
+    private Button btnMulaiTest, btnPelari, btnParameter, btnPengaturan, btnResult;
     private Toolbar toolbar;
+    private Loginsharedpreference loginsharedpreference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,14 +24,28 @@ public class BeepActivity extends AppCompatActivity {
         btnPelari = findViewById(R.id.btnPelari);
         btnParameter = findViewById(R.id.btnParameter);
         btnPengaturan = findViewById(R.id.btnPengaturan);
+        btnResult = findViewById(R.id.btnResult);
+
+        loginsharedpreference = new Loginsharedpreference(BeepActivity.this);
+
         initToolbar();
-        btnMulaiTest.setOnClickListener(v -> IntentToStart());
+        btnMulaiTest.setOnClickListener(v -> intentToStart());
         btnPelari.setOnClickListener(v -> intentToPelari());
         btnParameter.setOnClickListener(v -> intentToParameter());
         btnPengaturan.setOnClickListener(v -> intentToPengaturan());
+        btnResult.setOnClickListener(v -> intentToPelatih());
+        if(!loginsharedpreference.getUserLogin().getAkses().toLowerCase().equals("pelatih")) btnResult.setVisibility(View.GONE);
     }
 
-    private void IntentToStart() {
+    private void intentToPelatih() {
+        Intent intent = new Intent(BeepActivity.this, BeepPelatihActivity.class);
+        startActivity(intent);
+        finish();
+
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+    private void intentToStart() {
         Intent intent = new Intent(BeepActivity.this, BeepStartActivity.class);
         startActivity(intent);
         finish();

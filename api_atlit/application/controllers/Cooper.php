@@ -87,12 +87,13 @@ class Cooper extends REST_Controller
     public function getData_post()
     {
         $bulan      = $this->post('bulan');
-        $atlitid    = $this->post('atlitid');
+        $userid    = $this->post('userid');
+        $getAtlit = $this->M_Cooper->getAtlitID($userid);
 
-        $data1      = $this->M_Cooper->getData($bulan, "1", $atlitid);
-        $data2      = $this->M_Cooper->getData($bulan, "2", $atlitid);
-        $data3      = $this->M_Cooper->getData($bulan, "3", $atlitid);
-        $data4      = $this->M_Cooper->getData($bulan, "4", $atlitid);
+        $data1      = $this->M_Cooper->getData($bulan, "1", $getAtlit["id"]);
+        $data2      = $this->M_Cooper->getData($bulan, "2", $getAtlit["id"]);
+        $data3      = $this->M_Cooper->getData($bulan, "3", $getAtlit["id"]);
+        $data4      = $this->M_Cooper->getData($bulan, "4", $getAtlit["id"]);
         $this->response([
             'status'    =>  TRUE,
             'message'   =>  'success',
@@ -124,16 +125,13 @@ class Cooper extends REST_Controller
         ];
 
         $post = $this->M_Cooper->addData($data);
-        if($post > 0)
-        {
+        if ($post > 0) {
             $this->response([
                 'status'    =>  TRUE,
                 'message'   =>  'berhasil menambahkan data',
                 'data'      =>  $data
             ], REST_CONTROLLER::HTTP_OK);
-        }
-        else
-        {
+        } else {
             $this->response([
                 'status'    =>  False,
                 'message'   =>  'gagal menambahkan data'

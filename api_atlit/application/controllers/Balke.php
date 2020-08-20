@@ -87,12 +87,14 @@ class Balke extends REST_Controller
     public function getData_post()
     {
         $bulan      = $this->post('bulan');
-        $atlitid    = $this->post('atlitid');
+        $userid    = $this->post('userid');
 
-        $data1      = $this->M_Balke->getData($bulan, "1", $atlitid);
-        $data2      = $this->M_Balke->getData($bulan, "2", $atlitid);
-        $data3      = $this->M_Balke->getData($bulan, "3", $atlitid);
-        $data4      = $this->M_Balke->getData($bulan, "4", $atlitid);
+        $getAtlit = $this->M_Balke->getAtlitID($userid);
+
+        $data1      = $this->M_Balke->getData($bulan, "1", $getAtlit["id"]);
+        $data2      = $this->M_Balke->getData($bulan, "2", $getAtlit["id"]);
+        $data3      = $this->M_Balke->getData($bulan, "3", $getAtlit["id"]);
+        $data4      = $this->M_Balke->getData($bulan, "4", $getAtlit["id"]);
         $this->response([
             'status'    =>  TRUE,
             'message'   =>  'success',

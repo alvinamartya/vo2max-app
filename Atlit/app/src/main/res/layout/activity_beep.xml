@@ -41,6 +41,14 @@
             android:text="Pelari" />
 
         <Button
+            android:id="@+id/btnResult"
+            style="@style/LayoutButton.DiffTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Hasil" />
+
+        <Button
             android:id="@+id/btnParameter"
             style="@style/LayoutButton.DiffTop"
             android:layout_width="match_parent"

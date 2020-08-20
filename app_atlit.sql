@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 17, 2020 at 05:12 PM
+-- Generation Time: Aug 20, 2020 at 06:44 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -69,7 +69,7 @@ CREATE TABLE `balke` (
 --
 
 INSERT INTO `balke` (`id`, `bulan`, `minggu`, `jarak_ditempuh`, `vo2max`, `tingkat_kebugaran`, `atlitid`, `Solusi`) VALUES
-(3, 7, 4, 4295.89, 59.6835, 'Superior', 2, NULL),
+(3, 7, 4, 4295.89, 59.6835, 'Superior', 2, 'test'),
 (4, 7, 4, 7067.37, 91.4632, 'Superior', 2, NULL),
 (5, 7, 4, 15436.2, 187.426, 'Superior', 2, NULL),
 (6, 7, 4, 4645.99, 63.698, 'Superior', 2, NULL),
@@ -85,23 +85,23 @@ CREATE TABLE `beep` (
   `id` int(11) NOT NULL,
   `bulan` int(11) DEFAULT NULL,
   `minggu` int(11) DEFAULT NULL,
-  `nama` varchar(100) DEFAULT NULL,
-  `umur` int(11) DEFAULT NULL,
-  `jenis_kelamin` enum('L','P') DEFAULT NULL,
   `level` int(11) DEFAULT NULL,
   `shuttle` int(11) DEFAULT NULL,
   `vo2max` float DEFAULT NULL,
   `tingkat_kebugaran` varchar(100) DEFAULT NULL,
-  `userid` int(11) DEFAULT NULL
+  `atlitid` int(11) NOT NULL,
+  `solusi` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `beep`
 --
 
-INSERT INTO `beep` (`id`, `bulan`, `minggu`, `nama`, `umur`, `jenis_kelamin`, `level`, `shuttle`, `vo2max`, `tingkat_kebugaran`, `userid`) VALUES
-(1, 0, 4, 'b', 20, 'L', 1, 1, 20.0966, 'Very Poor', 10),
-(2, 7, 4, NULL, NULL, NULL, 2, 0, 23.3008, 'Very Poor', NULL);
+INSERT INTO `beep` (`id`, `bulan`, `minggu`, `level`, `shuttle`, `vo2max`, `tingkat_kebugaran`, `atlitid`, `solusi`) VALUES
+(1, 7, 4, 1, 0, 20.0966, 'Very Poor', 3, NULL),
+(2, 7, 4, 1, 0, 20.0966, 'Very Poor', 2, NULL),
+(3, 7, 4, 1, 0, 20.0966, 'Very Poor', 3, NULL),
+(4, 7, 4, 1, 0, 20.0966, 'Very Poor', 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -125,10 +125,10 @@ CREATE TABLE `cooper` (
 --
 
 INSERT INTO `cooper` (`id`, `bulan`, `minggu`, `vo2max`, `tingkat_kebugaran`, `atlitid`, `waktu`, `Solusi`) VALUES
-(1, 1, 2, 60.5, 'test', 2, 100, NULL),
-(2, 1, 2, 60.5, 'test', 2, 100, NULL),
+(1, 1, 2, 60.5, 'test', 3, 100, NULL),
+(2, 7, 2, 60.5, 'test', 2, 100, NULL),
 (3, 7, 4, 85.6421, 'Superior', 2, 6, NULL),
-(4, 7, 4, 85.6421, 'Superior', 2, 6, NULL);
+(4, 7, 4, 85.6421, 'Superior', 2, 6, 'test');
 
 -- --------------------------------------------------------
 
@@ -201,7 +201,7 @@ ALTER TABLE `balke`
 --
 ALTER TABLE `beep`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `beep_user` (`userid`);
+  ADD KEY `atlitid` (`atlitid`);
 
 --
 -- Indexes for table `cooper`
@@ -243,7 +243,7 @@ ALTER TABLE `balke`
 -- AUTO_INCREMENT for table `beep`
 --
 ALTER TABLE `beep`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `cooper`
@@ -283,7 +283,7 @@ ALTER TABLE `balke`
 -- Constraints for table `beep`
 --
 ALTER TABLE `beep`
-  ADD CONSTRAINT `beep_user` FOREIGN KEY (`userid`) REFERENCES `userlogin` (`id`);
+  ADD CONSTRAINT `beep_ibfk_1` FOREIGN KEY (`atlitid`) REFERENCES `atlit` (`ID`);
 
 --
 -- Constraints for table `cooper`

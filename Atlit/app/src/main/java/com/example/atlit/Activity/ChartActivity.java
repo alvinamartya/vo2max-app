@@ -128,7 +128,7 @@ public class ChartActivity extends AppCompatActivity {
     }
 
     private void fillBeeps() {
-        Call<getBeepModel> beepData = mApiInterface.beepdata(cal.get(Calendar.MONTH), loginsharedpreference.getUserLogin().getId());
+        Call<getBeepModel> beepData = loginsharedpreference.getUserLogin().getAkses().toLowerCase().equals("pelatih") ? mApiInterface.beepDataPelatih(cal.get(Calendar.MONTH)) : mApiInterface.beepdata(cal.get(Calendar.MONTH), loginsharedpreference.getUserLogin().getId());
         beepData.enqueue(new Callback<getBeepModel>() {
             @Override
             public void onResponse(Call<getBeepModel> call, Response<getBeepModel> response) {
@@ -333,7 +333,7 @@ public class ChartActivity extends AppCompatActivity {
     }
 
     private void fillBalkes() {
-        Call<getBalkeModel> balkeData = mApiInterface.balkedata(cal.get(Calendar.MONTH), loginsharedpreference.getUserLogin().getId(), loginsharedpreference.getUserLogin().getAkses());
+        Call<getBalkeModel> balkeData = loginsharedpreference.getUserLogin().getAkses().toLowerCase().equals("pelatih") ? mApiInterface.balkeDataPelatih(cal.get(Calendar.MONTH)) : mApiInterface.balkedata(cal.get(Calendar.MONTH), loginsharedpreference.getUserLogin().getId());
         balkeData.enqueue(new Callback<getBalkeModel>() {
             @Override
             public void onResponse(Call<getBalkeModel> call, Response<getBalkeModel> response) {

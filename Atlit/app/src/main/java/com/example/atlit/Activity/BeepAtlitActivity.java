@@ -10,17 +10,25 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.atlit.Dialog.SolusiDialog;
 import com.example.atlit.R;
+import com.example.atlit.RetrofitModel.atlitModel;
 import com.example.atlit.RetrofitModel.beepModel;
 import com.example.atlit.Utils.ApiClient;
 import com.example.atlit.Utils.ApiInterface;
 import com.example.atlit.Utils.Loginsharedpreference;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,7 +44,10 @@ public class BeepAtlitActivity extends AppCompatActivity {
     public final static String EXTRA_LEVEL = "extra_level";
     public final static String EXTRA_SHUTTLE = "extra_shuttle";
     private final static String TAG = BeepActivity.class.getSimpleName();
-    private Button btnProses, btnSimpan, btnHapus, btnData;
+    private Button btnProses, btnSimpan, btnHapus, btnData, btnSolusi;
+    private ProgressBar progress;
+    private TextView error_txt_cause;
+    private LinearLayout error_layout, data_beep;
     private ApiInterface apiInterface;
     private Toolbar toolbar;
 
@@ -60,17 +71,32 @@ public class BeepAtlitActivity extends AppCompatActivity {
         btnSimpan = findViewById(R.id.btnSimpan);
         btnHapus = findViewById(R.id.btnHapus);
         btnData = findViewById(R.id.btnData);
+        btnSolusi = findViewById(R.id.btnSolusi);
         loginsharedpreference = new Loginsharedpreference(this);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        edtnama.setEnabled(false);
-        rbL.setEnabled(false);
-        rbP.setEnabled(false);
-        edtUmur.setEnabled(false);
-        edtnama.setText(loginsharedpreference.getPelari().getName());
-        edtUmur.setText(String.valueOf(loginsharedpreference.getPelari().getUmur()));
-        if (loginsharedpreference.getPelari().getJk().equals("Laki-Laki")) rbL.setChecked(true);
-        else rbP.setChecked(true);
+        progress = findViewById(R.id.progress);
+        error_layout = findViewById(R.id.error_layout);
+        data_beep = findViewById(R.id.ll_data_beep);
+        error_txt_cause = findViewById(R.id.error_txt_cause);
+
+        if(loginsharedpreference.getUserLogin().getAkses().toLowerCase().equals("pelatih")) {
+            edtnama.setEnabled(false);
+            rbL.setEnabled(false);
+            rbP.setEnabled(false);
+            edtUmur.setEnabled(false);
+            edtnama.setText(loginsharedpreference.getPelari().getName());
+            edtUmur.setText(String.valueOf(loginsharedpreference.getPelari().getUmur()));
+            if (loginsharedpreference.getPelari().getJk().equals("Laki-Laki")) rbL.setChecked(true);
+            else rbP.setChecked(true);
+            hideProgress(3);
+        } else {
+            edtnama.setEnabled(false);
+            rbL.setEnabled(false);
+            rbP.setEnabled(false);
+            edtUmur.setEnabled(false);
+            fillData();
+        }
         edtLevel.setText(String.valueOf(getIntent().getIntExtra(EXTRA_LEVEL, 0)));
         edtShuttle.setText(String.valueOf(getIntent().getLongExtra(EXTRA_SHUTTLE, 0)));
         edtLevel.setEnabled(false);
@@ -78,6 +104,11 @@ public class BeepAtlitActivity extends AppCompatActivity {
         final Calendar cal = Calendar.getInstance();
         edtBulan.setText(String.valueOf(cal.get(Calendar.MONTH)));
         edtMinggu.setText(String.valueOf(cal.get(Calendar.WEEK_OF_MONTH)));
+
+        btnSolusi.setOnClickListener(v -> {
+            SolusiDialog dialog = new SolusiDialog();
+            dialog.show(getSupportFragmentManager(), "SolusiDialog");
+        });
 
         btnProses.setOnClickListener(view -> {
             if(Integer.parseInt(edtUmur.getText().toString()) < 13) {
@@ -204,6 +235,68 @@ public class BeepAtlitActivity extends AppCompatActivity {
             edtVo2Max.setText("");
             edtTingkatKebugaran.setText("");
         });
+    }
+
+
+    private void fillData() {
+        hideProgress(1);
+        Call<atlitModel> getData = apiInterface.atlitGets(loginsharedpreference.getUserLogin().getId());
+        getData.enqueue(new Callback<atlitModel>() {
+            @Override
+            public void onResponse(Call<atlitModel> call, Response<atlitModel> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getMessage().equals("data berhasil ditemukan")) {
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        edtnama.setText(response.body().getData().getNama());
+
+                        Calendar cal = Calendar.getInstance();
+                        int umur = 0;
+                        try {
+                            Date birthDate = dateFormat.parse(response.body().getData().getTanggal_lahir());
+                            Calendar cal2 = Calendar.getInstance();
+                            cal2.setTime(birthDate);
+                            umur = cal.get(Calendar.YEAR) - cal2.get(Calendar.YEAR);
+                        } catch (ParseException e) {
+                            Log.e("Balke Atlit", e.getMessage());
+                        }
+
+                        edtUmur.setText(String.valueOf(umur));
+                        if (response.body().getData().getJenis_kelamin().equals("Laki-Laki")) rbL.setChecked(true);
+                        else rbP.setChecked(true);
+                        hideProgress(3);
+                    } else {
+                        error_txt_cause.setText(response.body().getMessage());
+                        hideProgress(2);
+                    }
+                } else {
+                    error_txt_cause.setText(response.message());
+                    hideProgress(2);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<atlitModel> call, Throwable t) {
+                error_txt_cause.setText(t.getMessage());
+                hideProgress(2);
+            }
+        });
+
+    }
+
+    private void hideProgress(int value) {
+        if (value == 1) {
+            progress.setVisibility(View.VISIBLE);
+            error_layout.setVisibility(View.GONE);
+            data_beep.setVisibility(View.GONE);
+        } else if (value == 2) {
+            progress.setVisibility(View.GONE);
+            error_layout.setVisibility(View.VISIBLE);
+            data_beep.setVisibility(View.GONE);
+        } else {
+            progress.setVisibility(View.GONE);
+            error_layout.setVisibility(View.GONE);
+            data_beep.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

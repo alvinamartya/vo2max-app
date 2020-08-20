@@ -258,4 +258,20 @@
             android:layout_weight="0.5"
             android:text="@string/grafik" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llproses_pelatih"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/btnGrafik_pelatih"
+            style="@style/LayoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/grafik" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

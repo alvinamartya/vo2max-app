@@ -73,14 +73,12 @@ public class GameView extends SurfaceView implements Runnable {
             if (shuttle % 2 == 0) {
                 manXPos = manXPos + runSpeedPerSecond / fps;
                 if (manXPos >= getWidth() - 10) {
-                    manYPos += frameHeight;
                     shuttle = shuttle + 1;
                     manXPos = getWidth() - 10;
                 }
             } else {
                 manXPos = manXPos - runSpeedPerSecond / fps;
                 if (manXPos <= 10) {
-                    manYPos += frameHeight;
                     shuttle = shuttle + 1;
                     manXPos = 10;
                 }
@@ -114,7 +112,6 @@ public class GameView extends SurfaceView implements Runnable {
             manageCurrentFrame();
             canvas.drawBitmap(bitmapRunningMan, frameToDraw, whereToDraw, null);
             ourHolder.unlockCanvasAndPost(canvas);
-            Log.e("right to left", "right to left");
         } else if (ourHolder.getSurface().isValid() && shuttle % 2 != 0) {
             canvas = ourHolder.lockCanvas();
             canvas.drawColor(Color.WHITE);
@@ -122,7 +119,6 @@ public class GameView extends SurfaceView implements Runnable {
             manageCurrentFrame();
             canvas.drawBitmap(bitmapRunningMan2, frameToDraw, whereToDraw, null);
             ourHolder.unlockCanvasAndPost(canvas);
-            Log.e("left to right", "left to right");
         }
     }
 

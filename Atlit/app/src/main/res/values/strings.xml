@@ -215,4 +215,5 @@ yang berupa perdiksi Vo2max.
     <string name="_5_asupan_protein_yang_seimbang">5.\tAsupan Protein Yang Seimbang.</string>
     <string name="_4_asupan_nutrisi_dan_gizi_yang_seimbang">4.\tAsupan Nutrisi dan Gizi Yang Seimbang.</string>
     <string name="saran">Solusi</string>
+    <string name="beep_vo2max">Beep VO2MAX</string>
 </resources>

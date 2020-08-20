@@ -50,7 +50,8 @@ public class BalkeDataActivity extends AppCompatActivity {
     private TextView tvHeader;
     private TableRow minggu1, minggu2, minggu3, minggu4;
     private RecyclerView rvminggu1, rvminggu2, rvminggu3, rvminggu4;
-    private Button btnDellAll, btnGrafik;
+    private Button btnDellAll, btnGrafik, btnGrafikPelatih;
+    private LinearLayout llPelatih, llAtlit;
     private Loginsharedpreference loginsharedpreference;
 
     private final static String TAG = BalkeDataActivity.class.getSimpleName();
@@ -81,11 +82,16 @@ public class BalkeDataActivity extends AppCompatActivity {
         rvminggu4 = findViewById(R.id.rvminggu4);
         btnDellAll = findViewById(R.id.btnDellAll);
         btnGrafik = findViewById(R.id.btnGrafik);
+        btnGrafikPelatih = findViewById(R.id.btnGrafik_pelatih);
         progressbar = findViewById(R.id.progressbar);
         error_layout = findViewById(R.id.error_layout);
         error_txt_cause = findViewById(R.id.error_txt_cause);
         scrollView = findViewById(R.id.scrollView);
         error_btn_retry = findViewById(R.id.error_btn_retry);
+
+        llPelatih = findViewById(R.id.llproses_pelatih);
+        llAtlit = findViewById(R.id.llproses);
+
         mApiInterface = ApiClient.getClient().create(ApiInterface.class);
 
         tvHeader.setText("Bulan ke " + String.valueOf(cal.get(Calendar.MONTH)));
@@ -120,12 +126,12 @@ public class BalkeDataActivity extends AppCompatActivity {
         btnGrafik.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(BalkeDataActivity.this, ChartActivity.class);
-                intent.putExtra(ChartActivity.EXTRA_TYPE, "balke");
-                startActivity(intent);
-                finish();
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+               moveToGrafik();
             }
+        });
+
+        btnGrafikPelatih.setOnClickListener(v -> {
+            moveToGrafik();
         });
 
         btnDellAll.setOnClickListener(new View.OnClickListener() {
@@ -177,12 +183,28 @@ public class BalkeDataActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+
+        if(loginsharedpreference.getUserLogin().getAkses().toLowerCase().equals("pelatih")) {
+            llPelatih.setVisibility(View.VISIBLE);
+            llAtlit.setVisibility(View.GONE);
+        } else {
+            llPelatih.setVisibility(View.GONE);
+            llAtlit.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void moveToGrafik() {
+        Intent intent = new Intent(BalkeDataActivity.this, ChartActivity.class);
+        intent.putExtra(ChartActivity.EXTRA_TYPE, "balke");
+        startActivity(intent);
+        finish();
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     private void refreshData() {
         hideErrorView();
 
-        Call<getBalkeModel> balkeData = mApiInterface.balkedata(cal.get(Calendar.MONTH), loginsharedpreference.getUserLogin().getId(), loginsharedpreference.getUserLogin().getAkses());
+        Call<getBalkeModel> balkeData = loginsharedpreference.getUserLogin().getAkses().toLowerCase().equals("pelatih") ? mApiInterface.balkeDataPelatih(cal.get(Calendar.MONTH)) : mApiInterface.balkedata(cal.get(Calendar.MONTH), loginsharedpreference.getUserLogin().getId());
         balkeData.enqueue(new Callback<getBalkeModel>() {
             @Override
             public void onResponse(Call<getBalkeModel> call, Response<getBalkeModel> response) {

@@ -11,8 +11,12 @@ public class Beep implements Parcelable {
     private int shutle;
     private float vo2max;
     private String tingkat_kebugaran;
+    private String solusi;
 
-    public Beep(String nama, int umur, String jenis_kelamin, int level, int shutle, float vo2max, String tingkat_kebugaran) {
+    public Beep() {
+    }
+
+    public Beep(String nama, int umur, String jenis_kelamin, int level, int shutle, float vo2max, String tingkat_kebugaran, String solusi) {
         this.nama = nama;
         this.umur = umur;
         this.jenis_kelamin = jenis_kelamin;
@@ -20,32 +24,8 @@ public class Beep implements Parcelable {
         this.shutle = shutle;
         this.vo2max = vo2max;
         this.tingkat_kebugaran = tingkat_kebugaran;
+        this.solusi = solusi;
     }
-
-    public Beep() {
-    }
-
-    protected Beep(Parcel in) {
-        nama = in.readString();
-        umur = in.readInt();
-        jenis_kelamin = in.readString();
-        level = in.readInt();
-        shutle = in.readInt();
-        vo2max = in.readFloat();
-        tingkat_kebugaran = in.readString();
-    }
-
-    public static final Creator<Beep> CREATOR = new Creator<Beep>() {
-        @Override
-        public Beep createFromParcel(Parcel in) {
-            return new Beep(in);
-        }
-
-        @Override
-        public Beep[] newArray(int size) {
-            return new Beep[size];
-        }
-    };
 
     public String getNama() {
         return nama;
@@ -103,19 +83,51 @@ public class Beep implements Parcelable {
         this.tingkat_kebugaran = tingkat_kebugaran;
     }
 
+    public String getSolusi() {
+        return solusi;
+    }
+
+    public void setSolusi(String solusi) {
+        this.solusi = solusi;
+    }
+
+    protected Beep(Parcel in) {
+        nama = in.readString();
+        umur = in.readInt();
+        jenis_kelamin = in.readString();
+        level = in.readInt();
+        shutle = in.readInt();
+        vo2max = in.readFloat();
+        tingkat_kebugaran = in.readString();
+        solusi = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(nama);
+        dest.writeInt(umur);
+        dest.writeString(jenis_kelamin);
+        dest.writeInt(level);
+        dest.writeInt(shutle);
+        dest.writeFloat(vo2max);
+        dest.writeString(tingkat_kebugaran);
+        dest.writeString(solusi);
+    }
+
     @Override
     public int describeContents() {
         return 0;
     }
 
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(nama);
-        parcel.writeInt(umur);
-        parcel.writeString(jenis_kelamin);
-        parcel.writeInt(level);
-        parcel.writeInt(shutle);
-        parcel.writeFloat(vo2max);
-        parcel.writeString(tingkat_kebugaran);
-    }
+    public static final Creator<Beep> CREATOR = new Creator<Beep>() {
+        @Override
+        public Beep createFromParcel(Parcel in) {
+            return new Beep(in);
+        }
+
+        @Override
+        public Beep[] newArray(int size) {
+            return new Beep[size];
+        }
+    };
 }

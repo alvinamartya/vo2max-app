@@ -6,10 +6,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
+
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -43,8 +47,10 @@ public class CooperDataActivity extends AppCompatActivity {
     private TextView tvHeader;
     private TableRow minggu1, minggu2, minggu3, minggu4;
     private RecyclerView rvminggu1, rvminggu2, rvminggu3, rvminggu4;
-    private Button btnDellAll, btnGrafik;
+    private Button btnDellAll, btnGrafik, btnGrafikPelatih;
     private Loginsharedpreference loginsharedpreference;
+    private LinearLayout llPelatih, llAtlit;
+
     private final static String TAG = BalkeDataActivity.class.getSimpleName();
     Calendar cal = Calendar.getInstance();
     private Toolbar toolbar;
@@ -72,11 +78,15 @@ public class CooperDataActivity extends AppCompatActivity {
         rvminggu4 = findViewById(R.id.rvminggu4);
         btnDellAll = findViewById(R.id.btnDellAll);
         btnGrafik = findViewById(R.id.btnGrafik);
+        btnGrafikPelatih = findViewById(R.id.btnGrafik_pelatih);
         progressbar = findViewById(R.id.progressbar);
         error_layout = findViewById(R.id.error_layout);
         error_txt_cause = findViewById(R.id.error_txt_cause);
         scrollView = findViewById(R.id.scrollView);
         error_btn_retry = findViewById(R.id.error_btn_retry);
+
+        llAtlit = findViewById(R.id.llproses);
+        llPelatih = findViewById(R.id.llproses_pelatih);
 
         tvHeader.setText("Bulan ke " + String.valueOf(cal.get(Calendar.MONTH)));
         coopers1 = new ArrayList<>();
@@ -111,13 +121,14 @@ public class CooperDataActivity extends AppCompatActivity {
         btnGrafik.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CooperDataActivity.this, ChartActivity.class);
-                intent.putExtra(ChartActivity.EXTRA_TYPE, "cooper");
-                startActivity(intent);
-                finish();
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                moveToGrafik();
             }
         });
+
+        btnGrafikPelatih.setOnClickListener(v -> {
+            moveToGrafik();
+        });
+
         btnDellAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,8 +147,8 @@ public class CooperDataActivity extends AppCompatActivity {
                                 cooperDelete.enqueue(new Callback<deleteDataModel>() {
                                     @Override
                                     public void onResponse(Call<deleteDataModel> call, Response<deleteDataModel> response) {
-                                        if(response.isSuccessful()) {
-                                            if(response.body().getMessage().equals("success"))
+                                        if (response.isSuccessful()) {
+                                            if (response.body().getMessage().equals("success"))
                                                 Toast.makeText(CooperDataActivity.this, "Berhasil menghapus data", Toast.LENGTH_SHORT).show();
                                             else
                                                 Toast.makeText(CooperDataActivity.this, "Gagal menghapus data", Toast.LENGTH_SHORT).show();
@@ -168,6 +179,22 @@ public class CooperDataActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+
+        if(loginsharedpreference.getUserLogin().getAkses().toLowerCase().equals("pelatih")) {
+            llPelatih.setVisibility(View.VISIBLE);
+            llAtlit.setVisibility(View.GONE);
+        } else {
+            llPelatih.setVisibility(View.GONE);
+            llAtlit.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void moveToGrafik() {
+        Intent intent = new Intent(CooperDataActivity.this, ChartActivity.class);
+        intent.putExtra(ChartActivity.EXTRA_TYPE, "cooper");
+        startActivity(intent);
+        finish();
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     private void refreshData() {

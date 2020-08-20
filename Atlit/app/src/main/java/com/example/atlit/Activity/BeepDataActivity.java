@@ -43,7 +43,8 @@ public class BeepDataActivity extends AppCompatActivity {
     private TextView tvHeader;
     private TableRow minggu1, minggu2, minggu3, minggu4;
     private RecyclerView rvminggu1, rvminggu2, rvminggu3, rvminggu4;
-    private Button btnDellAll, btnGrafik;
+    private Button btnDellAll, btnGrafik, btnGrafikPelatih;
+    private LinearLayout llAtlit, llPelatih;
     private Loginsharedpreference loginsharedpreference;
     private final static String TAG = BeepDataActivity.class.getSimpleName();
     Calendar cal = Calendar.getInstance();
@@ -72,6 +73,7 @@ public class BeepDataActivity extends AppCompatActivity {
         rvminggu4 = findViewById(R.id.rvminggu4);
         btnDellAll = findViewById(R.id.btnDellAll);
         btnGrafik = findViewById(R.id.btnGrafik);
+        btnGrafikPelatih = findViewById(R.id.btnGrafik_pelatih);
         progressbar = findViewById(R.id.progressbar);
         error_layout = findViewById(R.id.error_layout);
         error_txt_cause = findViewById(R.id.error_txt_cause);
@@ -93,6 +95,9 @@ public class BeepDataActivity extends AppCompatActivity {
         rvminggu4.setAdapter(adapter4);
         loginsharedpreference = new Loginsharedpreference(this);
 
+        llAtlit = findViewById(R.id.llproses);
+        llPelatih = findViewById(R.id.llproses_pelatih);
+
         initToolbar();
 
         minggu1.setVisibility(View.GONE);
@@ -111,12 +116,12 @@ public class BeepDataActivity extends AppCompatActivity {
         btnGrafik.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(BeepDataActivity.this, ChartActivity.class);
-                intent.putExtra(ChartActivity.EXTRA_TYPE,"beep");
-                startActivity(intent);
-                finish();
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+               moveToGrafik();
             }
+        });
+
+        btnGrafikPelatih.setOnClickListener(v-> {
+            moveToGrafik();
         });
 
         btnDellAll.setOnClickListener(new View.OnClickListener() {
@@ -168,6 +173,22 @@ public class BeepDataActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+
+        if(loginsharedpreference.getUserLogin().getAkses().toLowerCase().equals("pelatih")) {
+            llPelatih.setVisibility(View.VISIBLE);
+            llAtlit.setVisibility(View.GONE);
+        } else {
+            llPelatih.setVisibility(View.GONE);
+            llAtlit.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void moveToGrafik() {
+        Intent intent = new Intent(BeepDataActivity.this, ChartActivity.class);
+        intent.putExtra(ChartActivity.EXTRA_TYPE,"beep");
+        startActivity(intent);
+        finish();
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     @Override
@@ -181,7 +202,7 @@ public class BeepDataActivity extends AppCompatActivity {
     private void refreshData() {
         hideErrorView();
 
-        Call<getBeepModel> beepData = mApiInterface.beepdata(cal.get(Calendar.MONTH), loginsharedpreference.getUserLogin().getId());
+        Call<getBeepModel> beepData = loginsharedpreference.getUserLogin().getAkses().toLowerCase().equals("pelatih") ? mApiInterface.beepDataPelatih(cal.get(Calendar.MONTH)) : mApiInterface.beepdata(cal.get(Calendar.MONTH), loginsharedpreference.getUserLogin().getId());
         beepData.enqueue(new Callback<getBeepModel>() {
             @Override
             public void onResponse(Call<getBeepModel> call, Response<getBeepModel> response) {
