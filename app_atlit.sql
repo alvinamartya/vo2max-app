@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 20, 2020 at 06:44 PM
+-- Generation Time: Aug 21, 2020 at 07:06 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -64,17 +64,6 @@ CREATE TABLE `balke` (
   `Solusi` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `balke`
---
-
-INSERT INTO `balke` (`id`, `bulan`, `minggu`, `jarak_ditempuh`, `vo2max`, `tingkat_kebugaran`, `atlitid`, `Solusi`) VALUES
-(3, 7, 4, 4295.89, 59.6835, 'Superior', 2, 'test'),
-(4, 7, 4, 7067.37, 91.4632, 'Superior', 2, NULL),
-(5, 7, 4, 15436.2, 187.426, 'Superior', 2, NULL),
-(6, 7, 4, 4645.99, 63.698, 'Superior', 2, NULL),
-(7, 7, 4, 5060.16, 68.4472, 'Superior', 2, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -98,8 +87,7 @@ CREATE TABLE `beep` (
 --
 
 INSERT INTO `beep` (`id`, `bulan`, `minggu`, `level`, `shuttle`, `vo2max`, `tingkat_kebugaran`, `atlitid`, `solusi`) VALUES
-(1, 7, 4, 1, 0, 20.0966, 'Very Poor', 3, NULL),
-(2, 7, 4, 1, 0, 20.0966, 'Very Poor', 2, NULL),
+(1, 7, 4, 1, 0, 20.0966, 'Very Poor', 3, 'test'),
 (3, 7, 4, 1, 0, 20.0966, 'Very Poor', 3, NULL),
 (4, 7, 4, 1, 0, 20.0966, 'Very Poor', 3, NULL);
 
@@ -125,10 +113,7 @@ CREATE TABLE `cooper` (
 --
 
 INSERT INTO `cooper` (`id`, `bulan`, `minggu`, `vo2max`, `tingkat_kebugaran`, `atlitid`, `waktu`, `Solusi`) VALUES
-(1, 1, 2, 60.5, 'test', 3, 100, NULL),
-(2, 7, 2, 60.5, 'test', 2, 100, NULL),
-(3, 7, 4, 85.6421, 'Superior', 2, 6, NULL),
-(4, 7, 4, 85.6421, 'Superior', 2, 6, 'test');
+(1, 1, 2, 60.5, 'test', 3, 100, NULL);
 
 -- --------------------------------------------------------
 
@@ -237,19 +222,19 @@ ALTER TABLE `atlit`
 -- AUTO_INCREMENT for table `balke`
 --
 ALTER TABLE `balke`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `beep`
 --
 ALTER TABLE `beep`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `cooper`
 --
 ALTER TABLE `cooper`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pelatih`

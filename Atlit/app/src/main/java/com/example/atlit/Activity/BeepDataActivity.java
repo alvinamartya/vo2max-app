@@ -40,6 +40,7 @@ import retrofit2.Response;
 
 public class BeepDataActivity extends AppCompatActivity {
 
+    public final static String KEY_FORM = "form";
     private TextView tvHeader;
     private TableRow minggu1, minggu2, minggu3, minggu4;
     private RecyclerView rvminggu1, rvminggu2, rvminggu3, rvminggu4;
@@ -193,10 +194,17 @@ public class BeepDataActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(BeepDataActivity.this, BeepStartActivity.class);
-        startActivity(intent);
-        finish();
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        if(getIntent().getStringExtra(KEY_FORM).equals("atlit")) {
+            Intent intent = new Intent(BeepDataActivity.this, BeepStartActivity.class);
+            startActivity(intent);
+            finish();
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        } else {
+            Intent intent = new Intent(BeepDataActivity.this, BeepPelatihActivity.class);
+            startActivity(intent);
+            finish();
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        }
     }
 
     private void refreshData() {

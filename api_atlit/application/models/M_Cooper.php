@@ -27,11 +27,11 @@ class M_Cooper extends CI_Model
         return $this->db->affected_rows();
     }
 
-    function getData($bulan, $minggu, $userid)
+    function getData($bulan, $minggu, $atlitid)
     {
         $this->db->where('bulan', $bulan);
         $this->db->where('minggu', $minggu);
-        $this->db->where('userid', $userid);
+        $this->db->where('atlitid', $atlitid);
         return $this->db->get('cooper')->result_array();
     }
 

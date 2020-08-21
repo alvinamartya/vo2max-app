@@ -39,7 +39,7 @@ public class BeepPelatihActivity extends AppCompatActivity {
     private ProgressBar progress;
     private LinearLayout error_layout;
     private TextView error_txt_cause;
-    private Button error_btn_retry;
+    private Button error_btn_retry,btnData;
     private RecyclerView rvBeep;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,7 @@ public class BeepPelatihActivity extends AppCompatActivity {
         error_btn_retry = findViewById(R.id.error_btn_retry);
         error_layout = findViewById(R.id.error_layout);
         error_txt_cause = findViewById(R.id.error_txt_cause);
+        btnData = findViewById(R.id.btnData);
 
         mApiInterface = ApiClient.getClient().create(ApiInterface.class);
         gson = new Gson();
@@ -65,6 +66,14 @@ public class BeepPelatihActivity extends AppCompatActivity {
         load();
         error_btn_retry.setOnClickListener(v -> {
             load();
+        });
+
+        btnData.setOnClickListener(v-> {
+            Intent intent = new Intent(BeepPelatihActivity.this, BeepDataActivity.class);
+            intent.putExtra(BeepDataActivity.KEY_FORM, "pelatih");
+            startActivity(intent);
+            finish();
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         });
     }
 

@@ -13,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.atlit.Activity.BalkePelatihActivity;
+import com.example.atlit.Activity.BeepPelatihActivity;
 import com.example.atlit.Dialog.BalkeDialog;
+import com.example.atlit.Dialog.BeepDialog;
 import com.example.atlit.Model.BeepGet;
 import com.example.atlit.R;
 import com.google.gson.Gson;
@@ -50,8 +52,8 @@ public class BeepListAdapter extends RecyclerView.Adapter<BeepListAdapter.ViewHo
         if (position == beepList.size() - 1) holder.lineBeep.setVisibility(View.GONE);
 
         holder.llBeep.setOnClickListener(v -> {
-//            BalkeDialog balkeDialog = new BalkeDialog(beep, context);
-//            balkeDialog.show(((BalkePelatihActivity) context).getSupportFragmentManager(), "Beep Dialog");
+            BeepDialog beepDialog = new BeepDialog(beep, context);
+            beepDialog.show(((BeepPelatihActivity) context).getSupportFragmentManager(), "Beep Dialog");
         });
     }
 

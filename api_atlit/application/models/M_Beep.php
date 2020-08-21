@@ -33,10 +33,18 @@ class M_Beep extends CI_Model
         return $query->row_array();
     }
 
-    function deleteData($bulan,$userid) {
+    function deleteData($bulan,$atlitid) {
         $this->db->where('bulan', $bulan);
-        $this->db->where('userid',$userid);
+        $this->db->where('atlitid',$atlitid);
         $this->db->delete('beep');
         return $this->db->affected_rows();
     }
+
+    function editData($data, $id)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('beep', $data);
+        return $this->db->affected_rows();
+    }
+
 }

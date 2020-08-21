@@ -127,6 +127,7 @@ public class BeepAtlitActivity extends AppCompatActivity {
 
         btnData.setOnClickListener(view -> {
             Intent intent = new Intent(BeepAtlitActivity.this, BeepDataActivity.class);
+            intent.putExtra(BeepDataActivity.KEY_FORM, "atlit");
             startActivity(intent);
             finish();
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

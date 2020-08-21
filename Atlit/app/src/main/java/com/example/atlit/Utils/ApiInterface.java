@@ -223,6 +223,10 @@ public interface ApiInterface {
     Call<Process> setSolusiBalke(@Field("id") int id, @Field("solusi") String solusi);
 
     @FormUrlEncoded
+    @POST("beep/setSolusi")
+    Call<Process> setSolusiBeep(@Field("id") int id, @Field("solusi") String solusi);
+
+    @FormUrlEncoded
     @POST("Cooper/setSolusi")
     Call<Process> setSolusiCooper(@Field("id") int id, @Field("solusi") String solusi);
 }

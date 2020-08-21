@@ -45,6 +45,7 @@ public class BeepAdapter extends RecyclerView.Adapter<BeepAdapter.ViewHolder> {
         holder.tvShuttle.setText(String.valueOf(data.getShutle()));
         holder.tvV02max.setText(String.valueOf(data.getVo2max()));
         holder.tvTingkatKebugaran.setText(data.getTingkat_kebugaran());
+        holder.tvSolusi.setText(data.getSolusi() == null ? "-" : data.getSolusi());
     }
 
     @Override
@@ -54,7 +55,7 @@ public class BeepAdapter extends RecyclerView.Adapter<BeepAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvnama, tvusia, tvjenisKelamin, tvLevel, tvShuttle, tvV02max, tvTingkatKebugaran;
+        private TextView tvnama, tvusia, tvjenisKelamin, tvLevel, tvShuttle, tvV02max, tvTingkatKebugaran,tvSolusi;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvnama = itemView.findViewById(R.id.tvnama);
@@ -64,6 +65,7 @@ public class BeepAdapter extends RecyclerView.Adapter<BeepAdapter.ViewHolder> {
             tvShuttle = itemView.findViewById(R.id.tvShuttle);
             tvV02max = itemView.findViewById(R.id.tvV02max);
             tvTingkatKebugaran = itemView.findViewById(R.id.tvTingkatKebugaran);
+            tvSolusi= itemView.findViewById(R.id.tvSolusi);
         }
     }
 }

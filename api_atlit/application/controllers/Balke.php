@@ -22,8 +22,10 @@ class Balke extends REST_Controller
     public function deleteAllData_post()
     {
         $bulan      = $this->post('bulan');
-        $atlitid    = $this->post('atlitid');
-        $data       = $this->M_Balke->deleteData($bulan, $atlitid);
+        $userid     = $this->post('userid');
+
+        $getAtlit = $this->M_Balke->getAtlitID($userid);
+        $data       = $this->M_Balke->deleteData($bulan, $getAtlit["id"]);
         if ($data > 0) {
             $this->response([
                 'status'    =>  TRUE,

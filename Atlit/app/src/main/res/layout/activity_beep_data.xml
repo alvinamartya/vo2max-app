@@ -138,10 +138,22 @@
                             android:background="#000000" />
 
                         <TextView
-                            android:layout_width="70dp"
+                            android:layout_width="100dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:text="Tingkat Kebugaran"
+                            android:textAlignment="center" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="#000000" />
+
+                        <TextView
+                            android:layout_width="80dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="Saran"
                             android:textAlignment="center" />
                     </TableRow>
 

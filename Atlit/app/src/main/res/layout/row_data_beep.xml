@@ -108,7 +108,7 @@
 
         <LinearLayout
             android:layout_width="70dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1">
 
             <TextView
@@ -125,7 +125,7 @@
             android:background="#000000" />
 
         <LinearLayout
-            android:layout_width="70dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
@@ -136,6 +136,22 @@
                 android:textAlignment="center"
                 tools:text="Tingkat Kebugaran" />
         </LinearLayout>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#000000" />
 
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tvSolusi"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAlignment="center"
+                tools:text="V02Max" />
+        </LinearLayout>
     </TableRow>
 </TableLayout>

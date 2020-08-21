@@ -23,7 +23,9 @@ class Beep extends REST_Controller
     {
         $bulan      = $this->post('bulan');
         $userid     = $this->post('userid');
-        $data       = $this->M_Beep->deleteData($bulan, $userid);
+        $getAtlit = $this->M_Beep->getAtlitID($userid);
+
+        $data       = $this->M_Beep->deleteData($bulan, $getAtlit["id"]);
         if ($data > 0) {
             $this->response([
                 'status'    =>  TRUE,
@@ -93,7 +95,7 @@ class Beep extends REST_Controller
 
 
         $getAtlit = $this->M_Beep->getAtlitID($userid);
-        
+
         $data = [
             "bulan"             => $bulan,
             "minggu"            => $minggu,
@@ -115,6 +117,29 @@ class Beep extends REST_Controller
             $this->response([
                 'status'    =>  False,
                 'message'   =>  'gagal menambahkan data'
+            ], REST_CONTROLLER::HTTP_OK);
+        }
+    }
+
+    public function setSolusi_post()
+    {
+        $id     = $this->post('id');
+        $solusi = $this->post('solusi');
+
+        $data = [
+            'Solusi' => $solusi
+        ];
+
+        $post_data = $this->M_Beep->editData($data, $id);
+        if ($post_data > 0) {
+            $this->response([
+                'status'    =>  TRUE,
+                'message'   =>  'berhasil menambah solusi'
+            ], REST_CONTROLLER::HTTP_OK);
+        } else {
+            $this->response([
+                'status'    =>  False,
+                'message'   =>  'gagal menambah solusi'
             ], REST_CONTROLLER::HTTP_OK);
         }
     }
