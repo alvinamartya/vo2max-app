@@ -13,6 +13,8 @@ public class Loginsharedpreference {
     private String KEY_ACTIVEAUDIO = "activeaudio";
     private String KEY_ACTIVESAVE = "activesave";
     private String KEY_PELARI = "pelari";
+    private String KEY_LAT = "lat";
+    private String KEY_LONG = "long";
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private Gson gson;
@@ -73,5 +75,23 @@ public class Loginsharedpreference {
         String json = sharedPreferences.getString(KEY_PELARI,null);
         if (json != null) return gson.fromJson(json, Pelari.class);
         else return null;
+    }
+
+    public float getLat() {
+        return sharedPreferences.getFloat(KEY_LAT, 0);
+    }
+
+    public void setLat(float lat) {
+        editor.putFloat(KEY_LAT, lat);
+        editor.commit();
+    }
+
+    public float getLong() {
+        return sharedPreferences.getFloat(KEY_LONG, 0);
+    }
+
+    public void setLong(float longi) {
+        editor.putFloat(KEY_LONG, longi);
+        editor.commit();
     }
 }

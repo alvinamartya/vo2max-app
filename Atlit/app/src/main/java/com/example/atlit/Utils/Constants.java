@@ -1,7 +1,4 @@
 package com.example.atlit.Utils;
-
-import android.location.Location;
-
 import com.google.android.gms.maps.model.LatLng;
 
 public class Constants {

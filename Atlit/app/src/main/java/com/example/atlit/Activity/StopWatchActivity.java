@@ -48,6 +48,7 @@ public class StopWatchActivity extends AppCompatActivity {
     private Timer timer;
     private Button btnStart;
     private double distance = 0;
+    private boolean isLocationChanged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +73,7 @@ public class StopWatchActivity extends AppCompatActivity {
                 if (isStart) {
                     runOnUiThread(() -> {
                         if (isStart) {
-                            if (Constants.Key_Method.equals("balke")) {
+                            if (Constants.Key_Method.equals("balke") && ms > 0) {
                                 ms -= 1;
                                 long s = ms % 60;
                                 long m = ms / 60 % 60;
@@ -83,7 +84,7 @@ public class StopWatchActivity extends AppCompatActivity {
                                 String hours = String.valueOf(h).length() == 1 ? "0" + h : String.valueOf(h);
                                 String time = hours + ":" + minutes + ":" + seconds;
                                 tvTime.setText(time);
-                            } else {
+                            } else if (Constants.Key_Method.equals("cooper")) {
                                 ms += 1;
                                 long s = ms % 60;
                                 long m = ms / 60 % 60;
@@ -95,7 +96,6 @@ public class StopWatchActivity extends AppCompatActivity {
                                 String time = hours + ":" + minutes + ":" + seconds;
                                 tvTime.setText(time);
                             }
-
                             double d = Constants.distance * (double) 1000;
                             double d2 = (double) Math.round(d * 100) / 100;
                             if (Constants.Key_Method.equals("balke") && ms <= 0) {
@@ -103,15 +103,20 @@ public class StopWatchActivity extends AppCompatActivity {
                                 intent.putExtra(BalkeAtlitActivity.Distance_Key, distance);
                                 startActivity(intent);
                                 stopLocationService();
+                                timer.cancel();
+                                timer.purge();
                             } else if (Constants.Key_Method.equals("cooper") && d2 >= 2400) {
                                 Intent intent = new Intent(StopWatchActivity.this, CooperAtlitActivity.class);
                                 intent.putExtra(CooperAtlitActivity.Time_Key, ms);
                                 startActivity(intent);
                                 stopLocationService();
+                                timer.cancel();
+                                timer.purge();
                             }
                         }
 
-                        if (isLocationServiceRunning()) {
+//                        if (isLocationServiceRunning()) {
+                        if (isLocationChanged) {
                             double d = Constants.distance * (double) 1000;
                             double d2 = (double) Math.round(d * 100) / 100;
                             tvDistance.setText(d2 + "m");
@@ -169,6 +174,12 @@ public class StopWatchActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopLocationService();
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
 
@@ -181,43 +192,27 @@ public class StopWatchActivity extends AppCompatActivity {
     private void initToolbar(String title) {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle(title);
 
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
 
-
-    private boolean isLocationServiceRunning() {
-        ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        if (activityManager != null) {
-            for (ActivityManager.RunningServiceInfo serviceInfo : activityManager.getRunningServices(Integer.MAX_VALUE)) {
-                if (LocationService.class.getName().equals(serviceInfo.service.getClassName())) {
-                    if (serviceInfo.foreground) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-        return false;
-    }
-
     private void startLocationService() {
-        if (!isLocationServiceRunning()) {
+        if (!isLocationChanged) {
             Intent intent = new Intent(getApplicationContext(), LocationService.class);
-            intent.setAction(Constants.ACTION_START_LOCATION_SERVICE);
             startService(intent);
+            isLocationChanged = true;
         }
     }
 
     private void stopLocationService() {
-        if (isLocationServiceRunning()) {
+        if (isLocationChanged) {
             Constants.distance = 0;
+            isLocationChanged = false;
+
             Intent intent = new Intent(getApplicationContext(), LocationService.class);
-            intent.setAction(Constants.ACTION_STOP_LOCATION_SERVICE);
-            startService(intent);
+            stopService(intent);
         }
     }
 }
