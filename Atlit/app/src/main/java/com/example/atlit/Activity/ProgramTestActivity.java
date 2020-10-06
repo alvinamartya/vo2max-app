@@ -82,7 +82,7 @@ public class ProgramTestActivity extends AppCompatActivity {
 
     private void intentToBalkeAtlit() {
         Intent intent = new Intent(ProgramTestActivity.this,StopWatchActivity.class);
-        Constants.distance = 0;
+        Constants.id = null;
         Constants.Key_Method = "balke";
         startActivity(intent);
         finish();
@@ -98,7 +98,7 @@ public class ProgramTestActivity extends AppCompatActivity {
 
     private void intentToCooperAtlit() {
         Intent intent = new Intent(ProgramTestActivity.this,StopWatchActivity.class);
-        Constants.distance = 0;
+        Constants.id = null;
         Constants.Key_Method = "cooper";
         startActivity(intent);
         finish();

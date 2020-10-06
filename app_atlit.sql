@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2020 at 04:04 PM
+-- Generation Time: Oct 06, 2020 at 10:05 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -134,7 +134,9 @@ CREATE TABLE `pelatih` (
 --
 
 INSERT INTO `pelatih` (`ID`, `refid`, `nama`, `tanggal_lahir`, `cabang_olahraga`) VALUES
-(4, 6, 'a', '1999-10-01', 'Lari');
+(4, 6, 'a', '1999-10-01', 'Lari'),
+(5, 13, 'test', '2020-08-27', 'test'),
+(6, 14, 'efdi aditya', '1995-09-28', 'Karate');
 
 -- --------------------------------------------------------
 
@@ -161,7 +163,9 @@ CREATE TABLE `userlogin` (
 INSERT INTO `userlogin` (`id`, `username`, `unik_id`, `enk_password`, `salt`, `akses`, `status`, `tgl_dibuat`, `tgl_diubah`) VALUES
 (6, 'a', '5d2fe6f99e74f6.61770890', 'CC524kfYvx7qQ4bg44cdD9K6ATM1OWVjNmU4MjY0', '59ec6e8264', 'pelatih', 'active', '2019-07-18 05:26:49', '2019-07-18 03:26:49'),
 (10, 'b', '5d36669d33f862.12891455', '9ZOJEQ2D0LZVRRfell+LOzgslrJjNTJmOTk2MDAx', 'c52f996001', 'atlit', 'active', '2019-07-23 03:45:01', '2019-07-23 01:45:01'),
-(11, 'c', '5d3729a88fd4a2.08407243', '+XT8Y+72F8N7txcnyEk2oXx0YT1jM2Y2NmRlYjcw', 'c3f66deb70', 'atlit', 'active', '2019-07-23 17:37:12', '2019-07-23 15:37:12');
+(11, 'c', '5d3729a88fd4a2.08407243', '+XT8Y+72F8N7txcnyEk2oXx0YT1jM2Y2NmRlYjcw', 'c3f66deb70', 'atlit', 'active', '2019-07-23 17:37:12', '2019-07-23 15:37:12'),
+(13, 'test', '5f470d6602cc50.58793090', 'BP5CbzgnJ+9USHldfop455kSodVmYjQzNjRkZTFm', 'fb4364de1f', 'pelatih', 'active', '2020-08-27 03:33:26', '2020-08-27 01:33:26'),
+(14, 'efdi09', '5f470e88c86935.31911819', '3GOx1GC7mm+Zsf1PvkP3kH+p5A9kMDJjMTk3YzRm', 'd02c197c4f', 'pelatih', 'active', '2020-08-27 03:38:16', '2020-08-27 01:38:16');
 
 --
 -- Indexes for dumped tables
@@ -240,13 +244,13 @@ ALTER TABLE `cooper`
 -- AUTO_INCREMENT for table `pelatih`
 --
 ALTER TABLE `pelatih`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `userlogin`
 --
 ALTER TABLE `userlogin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables

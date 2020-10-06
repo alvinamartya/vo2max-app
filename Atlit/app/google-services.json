@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "82081531077",
+    "firebase_url": "https://vo2max-e83dd.firebaseio.com",
+    "project_id": "vo2max-e83dd",
+    "storage_bucket": "vo2max-e83dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82081531077:android:0e465223cd354382b09cac",
+        "android_client_info": {
+          "package_name": "com.example.atlit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "82081531077-ddkm5fkl2jpbu8r589l38v01lm42v9e1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmc4y24iirgNOeUL82ZWAQfcnV5_Waw5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "82081531077-ddkm5fkl2jpbu8r589l38v01lm42v9e1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

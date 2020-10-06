@@ -9,7 +9,16 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.UUID;
 
 public class LocationService extends Service {
     private static final String TAG = "StopWatchGPS";
@@ -19,24 +28,43 @@ public class LocationService extends Service {
 
     private class LocationListener implements android.location.LocationListener {
         Location mLastLocation;
+        DatabaseReference locDBRef;
 
         public LocationListener(String provider) {
             Log.e(TAG, "LocationListener " + provider);
             mLastLocation = new Location(provider);
+            locDBRef = FirebaseDatabase.getInstance().getReference("locations");
         }
 
         @Override
         public void onLocationChanged(Location location) {
             Log.e(TAG, "onLocationChanged: " + location);
             mLastLocation.set(location);
-
-            if (Constants.location == null) {
-                Constants.location = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+            if (Constants.id == null) {
+                UUID uuid = UUID.randomUUID();
+                com.example.atlit.Model.Location loc = new com.example.atlit.Model.Location(uuid.toString(), mLastLocation.getLatitude(), mLastLocation.getLongitude(), 0);
+                locDBRef.child(uuid.toString()).setValue(loc);
+                Constants.id = uuid.toString();
             } else {
-                if (Constants.location.latitude != mLastLocation.getLatitude() || Constants.location.longitude != mLastLocation.getLongitude()) {
-                    Constants.distance += calculateDistance(Constants.location.latitude, Constants.location.longitude, mLastLocation.getLatitude(), mLastLocation.getLongitude());
-                    Constants.location = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
-                }
+                Log.e("onLactionChanged", "Is Changed");
+                locDBRef.child(Constants.id).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        LatLng dataLoc = new LatLng((double) dataSnapshot.child("lat").getValue(), (double) dataSnapshot.child("lon").getValue());
+
+                        Log.e("location", mLastLocation.getLatitude() + " " + mLastLocation.getLongitude() + " " + dataLoc.latitude + " " + dataLoc.longitude);
+                        if (dataLoc.latitude != mLastLocation.getLatitude() || dataLoc.longitude != mLastLocation.getLongitude()) {
+                            double distance = Double.parseDouble(dataSnapshot.child("distance").getValue().toString())+ calculateDistance(dataLoc.latitude, dataLoc.longitude, mLastLocation.getLatitude(), mLastLocation.getLongitude());
+                            com.example.atlit.Model.Location loc = new com.example.atlit.Model.Location(Constants.id, mLastLocation.getLatitude(), mLastLocation.getLongitude(), distance);
+                            locDBRef.child(Constants.id).setValue(loc);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         }
 
