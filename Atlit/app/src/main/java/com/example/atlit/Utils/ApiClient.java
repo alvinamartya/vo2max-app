@@ -4,7 +4,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    public final static String BASE_URL = "http://b5053d19c941.ngrok.io/api_atlit/index.php/";
+    public final static String BASE_URL = "https://vo2max.my.id/api_atlit/index.php/";
     private static Retrofit retrofit = null;
     public static Retrofit getClient() {
         if(retrofit==null) {

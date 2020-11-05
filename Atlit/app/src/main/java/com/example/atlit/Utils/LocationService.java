@@ -11,6 +11,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.atlit.Model.Location2;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,13 +19,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class LocationService extends Service {
     private static final String TAG = "StopWatchGPS";
     private LocationManager mLocationManager = null;
-    private static final int LOCATION_INTERVAL = 1000;
-    private static final float LOCATION_DISTANCE = 10f;
+    private static final int LOCATION_INTERVAL = 0;
+    private static final float LOCATION_DISTANCE = 0f;
 
     private class LocationListener implements android.location.LocationListener {
         Location mLastLocation;
@@ -40,23 +44,39 @@ public class LocationService extends Service {
         public void onLocationChanged(Location location) {
             Log.e(TAG, "onLocationChanged: " + location);
             mLastLocation.set(location);
+
             if (Constants.id == null) {
                 UUID uuid = UUID.randomUUID();
+
+                Location2 location2 = new Location2(mLastLocation.getLatitude(), mLastLocation.getLongitude());
                 com.example.atlit.Model.Location loc = new com.example.atlit.Model.Location(uuid.toString(), mLastLocation.getLatitude(), mLastLocation.getLongitude(), 0);
+
                 locDBRef.child(uuid.toString()).setValue(loc);
+                locDBRef.child(uuid.toString()).child("locations").child("0").setValue(location2);
+
                 Constants.id = uuid.toString();
             } else {
-                Log.e("onLactionChanged", "Is Changed");
                 locDBRef.child(Constants.id).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         LatLng dataLoc = new LatLng((double) dataSnapshot.child("lat").getValue(), (double) dataSnapshot.child("lon").getValue());
-
-                        Log.e("location", mLastLocation.getLatitude() + " " + mLastLocation.getLongitude() + " " + dataLoc.latitude + " " + dataLoc.longitude);
                         if (dataLoc.latitude != mLastLocation.getLatitude() || dataLoc.longitude != mLastLocation.getLongitude()) {
-                            double distance = Double.parseDouble(dataSnapshot.child("distance").getValue().toString())+ calculateDistance(dataLoc.latitude, dataLoc.longitude, mLastLocation.getLatitude(), mLastLocation.getLongitude());
+                            double distance = Double.parseDouble(Objects.requireNonNull(dataSnapshot.child("distance").getValue()).toString()) + calculateDistance(dataLoc.latitude, dataLoc.longitude, mLastLocation.getLatitude(), mLastLocation.getLongitude());
+
+                            List<Location2> location2s = new ArrayList<>();
+                            for (DataSnapshot data : dataSnapshot.child("locations").getChildren()) {
+                                location2s.add(new Location2((double) data.child("lat").getValue(), (double) data.child("lon").getValue()));
+                            }
+
+                            Location2 location2 = new Location2(mLastLocation.getLatitude(), mLastLocation.getLongitude());
                             com.example.atlit.Model.Location loc = new com.example.atlit.Model.Location(Constants.id, mLastLocation.getLatitude(), mLastLocation.getLongitude(), distance);
                             locDBRef.child(Constants.id).setValue(loc);
+                            location2s.add(location2);
+
+                            for(int i = 0; i < location2s.size(); i++) {
+                                Location2 item = location2s.get(i);
+                                locDBRef.child(Constants.id).child("locations").child(String.valueOf(i)).setValue(item);
+                            }
                         }
                     }
 
@@ -134,7 +154,7 @@ public class LocationService extends Service {
                 try {
                     mLocationManager.removeUpdates(mLocationListeners[i]);
                 } catch (Exception ex) {
-                    Log.i(TAG, "fail to remove location listners, ignore", ex);
+                    Log.i(TAG, "fail to remove location listeners, ignore", ex);
                 }
             }
         }

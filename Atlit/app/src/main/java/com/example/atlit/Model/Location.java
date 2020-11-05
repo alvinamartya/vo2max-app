@@ -1,5 +1,7 @@
 package com.example.atlit.Model;
 
+import java.util.List;
+
 public class Location {
     private String id;
     private double lat;
