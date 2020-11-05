@@ -166,7 +166,7 @@ public class BalkeAtlitActivity extends AppCompatActivity {
         btnSimpan.setOnClickListener(v -> {
             if (btnSimpan.getText().equals("Kembali")) {
                 Intent intent = new Intent(BalkeAtlitActivity.this, StopWatchActivity.class);
-                Constants.Key_Method = "balke";
+                intent.putExtra(StopWatchActivity.KEY_METHOD, "balke");
                 startActivity(intent);
                 finish();
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

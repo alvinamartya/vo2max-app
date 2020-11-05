@@ -82,8 +82,7 @@ public class ProgramTestActivity extends AppCompatActivity {
 
     private void intentToBalkeAtlit() {
         Intent intent = new Intent(ProgramTestActivity.this,StopWatchActivity.class);
-        Constants.id = null;
-        Constants.Key_Method = "balke";
+        intent.putExtra(StopWatchActivity.KEY_METHOD, "balke");
         startActivity(intent);
         finish();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -98,8 +97,7 @@ public class ProgramTestActivity extends AppCompatActivity {
 
     private void intentToCooperAtlit() {
         Intent intent = new Intent(ProgramTestActivity.this,StopWatchActivity.class);
-        Constants.id = null;
-        Constants.Key_Method = "cooper";
+        intent.putExtra(StopWatchActivity.KEY_METHOD, "cooper");
         startActivity(intent);
         finish();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

@@ -1,8 +1,11 @@
 package com.example.atlit.Utils;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -10,9 +13,13 @@ import android.os.IBinder;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 
 import com.example.atlit.Model.Location2;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,64 +34,68 @@ import java.util.UUID;
 public class LocationService extends Service {
     private static final String TAG = "StopWatchGPS";
     private LocationManager mLocationManager = null;
-    private static final int LOCATION_INTERVAL = 0;
-    private static final float LOCATION_DISTANCE = 0f;
+    private static final int LOCATION_INTERVAL = 10000;
+    private static final float LOCATION_DISTANCE = 10f;
 
     private class LocationListener implements android.location.LocationListener {
-        Location mLastLocation;
         DatabaseReference locDBRef;
+        private Context context;
 
         public LocationListener(String provider) {
             Log.e(TAG, "LocationListener " + provider);
-            mLastLocation = new Location(provider);
             locDBRef = FirebaseDatabase.getInstance().getReference("locations");
+            context = MySingleton.getContext();
         }
 
         @Override
         public void onLocationChanged(Location location) {
-            Log.e(TAG, "onLocationChanged: " + location);
-            mLastLocation.set(location);
-
+            FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context);
             if (Constants.id == null) {
-                UUID uuid = UUID.randomUUID();
+                if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    fusedLocationProviderClient.getLastLocation().addOnSuccessListener((Activity) context, location1 -> {
+                        UUID uuid = UUID.randomUUID();
 
-                Location2 location2 = new Location2(mLastLocation.getLatitude(), mLastLocation.getLongitude());
-                com.example.atlit.Model.Location loc = new com.example.atlit.Model.Location(uuid.toString(), mLastLocation.getLatitude(), mLastLocation.getLongitude(), 0);
+                        Location2 location2 = new Location2(location1.getLatitude(), location1.getLongitude());
+                        com.example.atlit.Model.Location loc = new com.example.atlit.Model.Location(uuid.toString(), location1.getLatitude(), location1.getLongitude(), 0);
 
-                locDBRef.child(uuid.toString()).setValue(loc);
-                locDBRef.child(uuid.toString()).child("locations").child("0").setValue(location2);
+                        locDBRef.child(uuid.toString()).setValue(loc);
+                        locDBRef.child(uuid.toString()).child("locations").child("0").setValue(location2);
 
-                Constants.id = uuid.toString();
+                        Constants.id = uuid.toString();
+                    });
+                }
             } else {
-                locDBRef.child(Constants.id).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        LatLng dataLoc = new LatLng((double) dataSnapshot.child("lat").getValue(), (double) dataSnapshot.child("lon").getValue());
-                        if (dataLoc.latitude != mLastLocation.getLatitude() || dataLoc.longitude != mLastLocation.getLongitude()) {
-                            double distance = Double.parseDouble(Objects.requireNonNull(dataSnapshot.child("distance").getValue()).toString()) + calculateDistance(dataLoc.latitude, dataLoc.longitude, mLastLocation.getLatitude(), mLastLocation.getLongitude());
+                if (ActivityCompat.checkSelfPermission(MySingleton.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    fusedLocationProviderClient.getLastLocation().addOnSuccessListener((Activity) context, location12 -> locDBRef.child(Constants.id).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            LatLng dataLoc = new LatLng((double) dataSnapshot.child("lat").getValue(), (double) dataSnapshot.child("lon").getValue());
+                            if (dataLoc.latitude != location12.getLatitude() || dataLoc.longitude != location12.getLongitude()) {
+                                double distance = Double.parseDouble(Objects.requireNonNull(dataSnapshot.child("distance").getValue()).toString()) + calculateDistance(dataLoc.latitude, dataLoc.longitude, location12.getLatitude(), location12.getLongitude());
 
-                            List<Location2> location2s = new ArrayList<>();
-                            for (DataSnapshot data : dataSnapshot.child("locations").getChildren()) {
-                                location2s.add(new Location2((double) data.child("lat").getValue(), (double) data.child("lon").getValue()));
-                            }
+                                List<Location2> location2s = new ArrayList<>();
+                                for (DataSnapshot data : dataSnapshot.child("locations").getChildren()) {
+                                    location2s.add(new Location2((double) data.child("lat").getValue(), (double) data.child("lon").getValue()));
+                                }
 
-                            Location2 location2 = new Location2(mLastLocation.getLatitude(), mLastLocation.getLongitude());
-                            com.example.atlit.Model.Location loc = new com.example.atlit.Model.Location(Constants.id, mLastLocation.getLatitude(), mLastLocation.getLongitude(), distance);
-                            locDBRef.child(Constants.id).setValue(loc);
-                            location2s.add(location2);
+                                Location2 location2 = new Location2(location12.getLatitude(), location12.getLongitude());
+                                com.example.atlit.Model.Location loc = new com.example.atlit.Model.Location(Constants.id, location12.getLatitude(), location12.getLongitude(), distance);
+                                locDBRef.child(Constants.id).setValue(loc);
+                                location2s.add(location2);
 
-                            for(int i = 0; i < location2s.size(); i++) {
-                                Location2 item = location2s.get(i);
-                                locDBRef.child(Constants.id).child("locations").child(String.valueOf(i)).setValue(item);
+                                for (int i = 0; i < location2s.size(); i++) {
+                                    Location2 item = location2s.get(i);
+                                    locDBRef.child(Constants.id).child("locations").child(String.valueOf(i)).setValue(item);
+                                }
                             }
                         }
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    }
-                });
+                        }
+                    }));
+                }
             }
         }
 
