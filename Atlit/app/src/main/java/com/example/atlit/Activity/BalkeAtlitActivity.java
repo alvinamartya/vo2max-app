@@ -91,7 +91,7 @@ public class BalkeAtlitActivity extends AppCompatActivity {
         loginsharedpreference = new Loginsharedpreference(this);
 
         double distance = getIntent().getDoubleExtra(Distance_Key, 0);
-        edtJarak.setText(String.valueOf(distance));
+        edtJarak.setText(String.valueOf(distance * 1000));
         edtJarak.setEnabled(false);
 
         btnSolusi.setOnClickListener(v -> {

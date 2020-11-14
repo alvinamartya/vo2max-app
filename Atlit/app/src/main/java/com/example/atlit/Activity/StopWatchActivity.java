@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -36,11 +40,11 @@ public class StopWatchActivity extends AppCompatActivity {
     private TextView tvTime, tvDistance;
     private Timer timer;
     private Button btnStart;
-    private double distance = 0;
     private boolean isLocationChanged = false;
     DatabaseReference locDbRef;
     public static String KEY_METHOD = "key_method";
     private String keyMethod = "";
+    private DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,16 +100,17 @@ public class StopWatchActivity extends AppCompatActivity {
                                 locDbRef.child(Constants.id).addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        double d = Double.parseDouble(dataSnapshot.child("distance").getValue().toString()) * (double) 100;
-                                        double d2 = Math.round(d);
+                                        double d = Double.parseDouble(dataSnapshot.child("distance").getValue().toString());
+                                        BigDecimal bd = new BigDecimal(d).setScale(2, RoundingMode.HALF_UP);
+                                        double d2 = bd.doubleValue();
                                         if (keyMethod.equals("balke") && ms <= 0) {
                                             Intent intent = new Intent(StopWatchActivity.this, BalkeAtlitActivity.class);
-                                            intent.putExtra(BalkeAtlitActivity.Distance_Key, d2);
+                                            intent.putExtra(BalkeAtlitActivity.Distance_Key, d);
                                             startActivity(intent);
                                             stopLocationService();
                                             timer.cancel();
                                             timer.purge();
-                                        } else if (keyMethod.equals("cooper") && d2 >= 2400) {
+                                        } else if (keyMethod.equals("cooper") && d2 >= 2.4) {
                                             Intent intent = new Intent(StopWatchActivity.this, CooperAtlitActivity.class);
                                             intent.putExtra(CooperAtlitActivity.Time_Key, ms);
                                             startActivity(intent);
@@ -115,7 +120,7 @@ public class StopWatchActivity extends AppCompatActivity {
                                         }
 
                                         if (isLocationChanged) {
-                                            tvDistance.setText(d2 + "m");
+                                            tvDistance.setText(d2 + "km");
                                         }
                                     }
 
@@ -146,16 +151,17 @@ public class StopWatchActivity extends AppCompatActivity {
                                 btnStart.setText("Start");
 
                                 Intent intent = new Intent(StopWatchActivity.this, BalkeAtlitActivity.class);
-                                double d = Double.parseDouble(dataSnapshot.child("distance").getValue().toString()) * (double) 100;
-                                double d2 = Math.round(d);
+                                double d = Double.parseDouble(dataSnapshot.child("distance").getValue().toString());
+                                BigDecimal bd = new BigDecimal(d).setScale(2, RoundingMode.HALF_UP);
+                                double d2 = bd.doubleValue();
                                 intent.putExtra(BalkeAtlitActivity.Distance_Key, d2);
                                 startActivity(intent);
                                 stopLocationService();
                             } else {
-
-                                double d = Double.parseDouble(dataSnapshot.child("distance").getValue().toString()) * (double) 100;
-                                double d2 = Math.round(d);
-                                if (keyMethod.equals("cooper") && d2 < 2400) {
+                                double d = Double.parseDouble(dataSnapshot.child("distance").getValue().toString());
+                                BigDecimal bd = new BigDecimal(d).setScale(2, RoundingMode.HALF_UP);
+                                double d2 = bd.doubleValue();
+                                if (keyMethod.equals("cooper") && d2 < 2.4) {
                                     Toast.makeText(StopWatchActivity.this, "Jarak tempuh belum mencapai 2,4KM", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
