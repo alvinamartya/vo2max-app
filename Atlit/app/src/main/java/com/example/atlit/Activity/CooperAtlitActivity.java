@@ -198,6 +198,10 @@ public class CooperAtlitActivity extends AppCompatActivity {
                         pDialog.dismiss();
                     } else {
                         String jk = rbL.isChecked() == true ? "L" : "P";
+                        int waktu = (Integer.parseInt(edtWaktu.getText().toString()) * 60) + Integer.parseInt(edtDetik.getText().toString());
+                        Log.e("waktu", "waktu: " + waktu);
+                        Log.e("id", "id: " + loginsharedpreference.getUserLogin().getId());
+
                         Call<CooperModel> cooper = mApiInterface.cooperPost(
                                 Integer.parseInt(edtBulan.getText().toString()),
                                 Integer.parseInt(edtMinggu.getText().toString()),
@@ -217,6 +221,7 @@ public class CooperAtlitActivity extends AppCompatActivity {
                                         edtTingkatKebugaran.setText("");
                                         edtVo2Max.setText("");
                                         edtWaktu.setText("");
+                                        edtDetik.setText("");
 
                                         btnSimpan.setText("Kembali");
                                     } else

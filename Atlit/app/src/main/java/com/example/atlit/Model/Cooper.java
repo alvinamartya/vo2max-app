@@ -5,16 +5,19 @@ import android.os.Parcelable;
 
 public class Cooper implements Parcelable {
     private String nama;
-    private int umur;
+    private String tanggal_lahir;
     private String jenis_kelamin;
     private int waktu;
     private String tingkat_kebugaran;
     private float vo2max;
     private String Solusi;
 
-    public Cooper(String nama, int umur, String jenis_kelamin, int waktu, String tingkat_kebugaran, float vo2max, String solusi) {
+    public Cooper() {
+    }
+
+    public Cooper(String nama, String tanggal_lahir, String jenis_kelamin, int waktu, String tingkat_kebugaran, float vo2max, String solusi) {
         this.nama = nama;
-        this.umur = umur;
+        this.tanggal_lahir = tanggal_lahir;
         this.jenis_kelamin = jenis_kelamin;
         this.waktu = waktu;
         this.tingkat_kebugaran = tingkat_kebugaran;
@@ -30,12 +33,12 @@ public class Cooper implements Parcelable {
         this.nama = nama;
     }
 
-    public int getUmur() {
-        return umur;
+    public String getTanggal_lahir() {
+        return tanggal_lahir;
     }
 
-    public void setUmur(int umur) {
-        this.umur = umur;
+    public void setTanggal_lahir(String tanggal_lahir) {
+        this.tanggal_lahir = tanggal_lahir;
     }
 
     public String getJenis_kelamin() {
@@ -80,12 +83,28 @@ public class Cooper implements Parcelable {
 
     protected Cooper(Parcel in) {
         nama = in.readString();
-        umur = in.readInt();
+        tanggal_lahir = in.readString();
         jenis_kelamin = in.readString();
         waktu = in.readInt();
         tingkat_kebugaran = in.readString();
         vo2max = in.readFloat();
         Solusi = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(nama);
+        dest.writeString(tanggal_lahir);
+        dest.writeString(jenis_kelamin);
+        dest.writeInt(waktu);
+        dest.writeString(tingkat_kebugaran);
+        dest.writeFloat(vo2max);
+        dest.writeString(Solusi);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Cooper> CREATOR = new Creator<Cooper>() {
@@ -99,20 +118,4 @@ public class Cooper implements Parcelable {
             return new Cooper[size];
         }
     };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(nama);
-        parcel.writeInt(umur);
-        parcel.writeString(jenis_kelamin);
-        parcel.writeInt(waktu);
-        parcel.writeString(tingkat_kebugaran);
-        parcel.writeFloat(vo2max);
-        parcel.writeString(Solusi);
-    }
 }

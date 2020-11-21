@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.atlit.Model.Balke;
 import com.example.atlit.R;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class BalkeAdapter extends RecyclerView.Adapter<BalkeAdapter.ViewHolder> {
@@ -39,9 +40,12 @@ public class BalkeAdapter extends RecyclerView.Adapter<BalkeAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
         Balke balke = balkeList.get(i);
+
+        Calendar cal = Calendar.getInstance();
+        int umur =  cal.get(Calendar.YEAR) - Integer.parseInt(balke.getTanggal_lahir().split("-")[0]);
         holder.tvnama.setText(balke.getNama());
-        holder.tvusia.setText(String.valueOf(balke.getUmur()));
-        holder.tvjenisKelamin.setText(balke.getJenis_kelamin());
+        holder.tvusia.setText(String.valueOf(umur));
+        holder.tvjenisKelamin.setText(balke.getJenis_kelamin().equals("Laki-Laki") ? "L" : "P");
         holder.tvJarak.setText(String.valueOf(balke.getJarak_ditempuh()));
         holder.tvLevel.setText(balke.getTingkat_kebugaran());
         holder.tvV02max.setText(String.valueOf(balke.getVo2max()));

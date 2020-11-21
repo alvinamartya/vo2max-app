@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,10 @@ import android.widget.TextView;
 
 import com.example.atlit.Model.Cooper;
 import com.example.atlit.R;
+import com.google.gson.Gson;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class CooperAdapter extends RecyclerView.Adapter<CooperAdapter.ViewHolder> {
@@ -39,14 +43,19 @@ public class CooperAdapter extends RecyclerView.Adapter<CooperAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
-        Cooper balke = cooperList.get(i);
-        holder.tvnama.setText(balke.getNama());
-        holder.tvusia.setText(String.valueOf(balke.getUmur()));
-        holder.tvjenisKelamin.setText(balke.getJenis_kelamin());
-        holder.tvWaktu.setText(String.valueOf(balke.getWaktu()));
-        holder.tvLevel.setText(balke.getTingkat_kebugaran());
-        holder.tvV02max.setText(String.valueOf(balke.getVo2max()));
-        holder.tvSolusi.setText(balke.getSolusi() == null ? "-" : balke.getSolusi());
+        Cooper cooper = cooperList.get(i);
+
+        Log.e("test", new Gson().toJson(cooper));
+
+        Calendar cal = Calendar.getInstance();
+        int umur =  cal.get(Calendar.YEAR) - Integer.parseInt(cooper.getTanggal_lahir().split("-")[0]);
+        holder.tvnama.setText(cooper.getNama());
+        holder.tvusia.setText(String.valueOf(umur));
+        holder.tvjenisKelamin.setText(cooper.getJenis_kelamin().equals("Laki-Laki") ? "L" : "P");
+        holder.tvWaktu.setText(String.valueOf(cooper.getWaktu()));
+        holder.tvLevel.setText(cooper.getTingkat_kebugaran());
+        holder.tvV02max.setText(String.valueOf(cooper.getVo2max()));
+        holder.tvSolusi.setText(cooper.getSolusi() == null ? "-" : cooper.getSolusi());
     }
 
     @Override

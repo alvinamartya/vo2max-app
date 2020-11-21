@@ -2,6 +2,7 @@ package com.example.atlit.Adapter;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,7 @@ public class CooperListAdapter extends RecyclerView.Adapter<CooperListAdapter.Vi
         holder.tvBulan.setText(String.valueOf(cooperGet.getBulan()));
         holder.tvTingkatKebugaran.setText(cooperGet.getTingkat_kebugaran());
 
+        Log.e("minute", String.valueOf(cooperGet.getWaktu()));
         int m = cooperGet.getWaktu() / 60;
         int s = cooperGet.getWaktu() % 60;
 
