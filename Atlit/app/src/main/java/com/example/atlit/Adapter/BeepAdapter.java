@@ -42,7 +42,7 @@ public class BeepAdapter extends RecyclerView.Adapter<BeepAdapter.ViewHolder> {
         holder.tvusia.setText(String.valueOf(data.getUmur()));
         holder.tvjenisKelamin.setText(data.getJenis_kelamin());
         holder.tvLevel.setText(String.valueOf(data.getLevel()));
-        holder.tvShuttle.setText(String.valueOf(data.getShutle()));
+        holder.tvShuttle.setText(String.valueOf(data.getShuttle()));
         holder.tvV02max.setText(String.valueOf(data.getVo2max()));
         holder.tvTingkatKebugaran.setText(data.getTingkat_kebugaran());
         holder.tvSolusi.setText(data.getSolusi() == null ? "-" : data.getSolusi());

@@ -153,7 +153,7 @@ public class BeepAtlitActivity extends AppCompatActivity {
                             Integer.parseInt(edtBulan.getText().toString()),
                             Integer.parseInt(edtMinggu.getText().toString()),
                             getIntent().getIntExtra(EXTRA_LEVEL, 0),
-                            getIntent().getIntExtra(EXTRA_SHUTTLE, 0),
+                            getIntent().getLongExtra(EXTRA_SHUTTLE, 0),
                             Float.parseFloat(edtVo2Max.getText().toString()),
                             edtTingkatKebugaran.getText().toString(),
                             loginsharedpreference.getPelari().getId()
