@@ -9,7 +9,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
 
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +25,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -44,7 +42,6 @@ public class StopWatchActivity extends AppCompatActivity {
     DatabaseReference locDbRef;
     public static String KEY_METHOD = "key_method";
     private String keyMethod = "";
-    private DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +57,7 @@ public class StopWatchActivity extends AppCompatActivity {
         timer = new Timer();
 
         if (keyMethod.equals("balke")) {
-            ms = 15 * 60 * 60;
+            ms = 15 * 60;
             initToolbar("Balke");
         } else {
             initToolbar("Cooper");
@@ -214,7 +211,7 @@ public class StopWatchActivity extends AppCompatActivity {
                 isStart = true;
 
                 timer = new Timer();
-                timer.scheduleAtFixedRate(task, 0, 10);
+                timer.scheduleAtFixedRate(task, 0, 1000);
                 btnStart.setText("Finish");
             }
         });
