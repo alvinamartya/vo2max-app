@@ -56,7 +56,7 @@ public class BeepDialog extends DialogFragment {
         Button btnKembali = v.findViewById(R.id.btnKembali);
 
         tvNama.setText(beepGetPojo.getNama());
-        tvShuttle.setText(String.valueOf(beepGetPojo.getShutle()));
+        tvShuttle.setText(String.valueOf(beepGetPojo.getShuttle()));
         tvLevel.setText(String.valueOf(beepGetPojo.getLevel()));
         tvVo2max.setText(String.valueOf(beepGetPojo.getVo2max()));
         tvTingkatKebugaran.setText(beepGetPojo.getTingkat_kebugaran());

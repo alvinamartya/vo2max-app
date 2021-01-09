@@ -144,7 +144,7 @@ public interface ApiInterface {
             @Field("bulan") int bulan,
             @Field("minggu") int minggu,
             @Field("level") int level,
-            @Field("shuttle") int ahuttle,
+            @Field("shuttle") long shuttle,
             @Field("vo2max") float vo2max,
             @Field("tingkat_kebugaran") String tingkat_kebugaran,
             @Field("userid") int userid

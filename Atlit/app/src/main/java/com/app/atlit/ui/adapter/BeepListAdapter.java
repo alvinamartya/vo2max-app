@@ -43,7 +43,7 @@ public class BeepListAdapter extends RecyclerView.Adapter<BeepListAdapter.ViewHo
         holder.tvMinggu.setText(String.valueOf(beep.getMinggu()));
         holder.tvBulan.setText(String.valueOf(beep.getBulan()));
         holder.tvTingkatKebugaran.setText(beep.getTingkat_kebugaran());
-        holder.tvShuttle.setText(String.valueOf(beep.getShutle()));
+        holder.tvShuttle.setText(String.valueOf(beep.getShuttle()));
         holder.tvLevel.setText(String.valueOf(beep.getLevel()));
         if (position == beepList.size() - 1) holder.lineBeep.setVisibility(View.GONE);
 

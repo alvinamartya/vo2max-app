@@ -25,7 +25,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -43,7 +42,6 @@ public class StopWatchActivity extends AppCompatActivity {
     DatabaseReference locDbRef;
     public static String KEY_METHOD = "key_method";
     private String keyMethod = "";
-    private final DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,7 +140,7 @@ public class StopWatchActivity extends AppCompatActivity {
                 isStart = true;
 
                 timer = new Timer();
-                timer.scheduleAtFixedRate(task, 0, 10);
+                timer.scheduleAtFixedRate(task, 0, 1000);
                 btnStart.setText("Finish");
             }
         });

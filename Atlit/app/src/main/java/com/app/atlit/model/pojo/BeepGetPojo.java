@@ -10,62 +10,22 @@ public class BeepGetPojo implements Parcelable {
     private String tingkat_kebugaran;
     private int bulan;
     private int minggu;
-    private int shutle;
+    private int shuttle;
     private int level;
 
-    public BeepGetPojo(int id, String nama, float vo2max, String tingkat_kebugaran, int bulan, int minggu, int shutle, int level) {
+    public BeepGetPojo() {
+    }
+
+    public BeepGetPojo(int id, String nama, float vo2max, String tingkat_kebugaran, int bulan, int minggu, int shuttle, int level) {
         this.id = id;
         this.nama = nama;
         this.vo2max = vo2max;
         this.tingkat_kebugaran = tingkat_kebugaran;
         this.bulan = bulan;
         this.minggu = minggu;
-        this.shutle = shutle;
+        this.shuttle = shuttle;
         this.level = level;
     }
-
-    public BeepGetPojo() {
-    }
-
-    protected BeepGetPojo(Parcel in) {
-        id = in.readInt();
-        nama = in.readString();
-        vo2max = in.readFloat();
-        tingkat_kebugaran = in.readString();
-        bulan = in.readInt();
-        minggu = in.readInt();
-        shutle = in.readInt();
-        level = in.readInt();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeString(nama);
-        dest.writeFloat(vo2max);
-        dest.writeString(tingkat_kebugaran);
-        dest.writeInt(bulan);
-        dest.writeInt(minggu);
-        dest.writeInt(shutle);
-        dest.writeInt(level);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<BeepGetPojo> CREATOR = new Creator<BeepGetPojo>() {
-        @Override
-        public BeepGetPojo createFromParcel(Parcel in) {
-            return new BeepGetPojo(in);
-        }
-
-        @Override
-        public BeepGetPojo[] newArray(int size) {
-            return new BeepGetPojo[size];
-        }
-    };
 
     public int getId() {
         return id;
@@ -115,12 +75,12 @@ public class BeepGetPojo implements Parcelable {
         this.minggu = minggu;
     }
 
-    public int getShutle() {
-        return shutle;
+    public int getShuttle() {
+        return shuttle;
     }
 
-    public void setShutle(int shutle) {
-        this.shutle = shutle;
+    public void setShuttle(int shuttle) {
+        this.shuttle = shuttle;
     }
 
     public int getLevel() {
@@ -130,4 +90,44 @@ public class BeepGetPojo implements Parcelable {
     public void setLevel(int level) {
         this.level = level;
     }
+
+    protected BeepGetPojo(Parcel in) {
+        id = in.readInt();
+        nama = in.readString();
+        vo2max = in.readFloat();
+        tingkat_kebugaran = in.readString();
+        bulan = in.readInt();
+        minggu = in.readInt();
+        shuttle = in.readInt();
+        level = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(nama);
+        dest.writeFloat(vo2max);
+        dest.writeString(tingkat_kebugaran);
+        dest.writeInt(bulan);
+        dest.writeInt(minggu);
+        dest.writeInt(shuttle);
+        dest.writeInt(level);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<BeepGetPojo> CREATOR = new Creator<BeepGetPojo>() {
+        @Override
+        public BeepGetPojo createFromParcel(Parcel in) {
+            return new BeepGetPojo(in);
+        }
+
+        @Override
+        public BeepGetPojo[] newArray(int size) {
+            return new BeepGetPojo[size];
+        }
+    };
 }

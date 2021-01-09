@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -86,6 +87,7 @@ public class BeepPelatihActivity extends AppCompatActivity {
                         error_txt_cause.setText("Data balke tidak tersedia");
                     } else {
                         hideProgress(3);
+                        Log.e("test", new Gson().toJson(response.body()));
                         BeepListAdapter beepListAdapter = new BeepListAdapter(response.body(), BeepPelatihActivity.this);
                         rvBeep.setAdapter(beepListAdapter);
                     }
