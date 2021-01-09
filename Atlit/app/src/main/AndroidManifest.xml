@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.atlit">
+    package="com.app.atlit">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -21,101 +21,101 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="n">
         <activity
-            android:name=".Activity.BeepPelatihActivity"
+            android:name=".ui.activity.BeepPelatihActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.StopWatchActivity"
+            android:name=".ui.activity.StopWatchActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.AtlitProfileActivity"
+            android:name=".ui.activity.AtlitProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.PelatihProfileActivity"
+            android:name=".ui.activity.PelatihProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.BeepDataActivity"
+            android:name=".ui.activity.BeepDataActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.BeepAtlitActivity"
+            android:name=".ui.activity.BeepAtlitActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".Activity.BeepStartActivity"
+            android:name=".ui.activity.BeepStartActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.BeepMetodeActivity"
+            android:name=".ui.activity.BeepMetodeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.BalkeMetodeActivity"
+            android:name=".ui.activity.BalkeMetodeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.MetodeActivity"
+            android:name=".ui.activity.MetodeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.ChartActivity"
+            android:name=".ui.activity.ChartActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.PelariActivity"
+            android:name=".ui.activity.PelariActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.PengaturanActivity"
-            android:parentActivityName=".Activity.BeepActivity"
+            android:name=".ui.activity.PengaturanActivity"
+            android:parentActivityName=".ui.activity.BeepActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.ParameterActivity"
+            android:name=".ui.activity.ParameterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.BeepActivity"
+            android:name=".ui.activity.BeepActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.CooperDataActivity"
+            android:name=".ui.activity.CooperDataActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.CooperPelatihActivity"
+            android:name=".ui.activity.CooperPelatihActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".Activity.CooperAtlitActivity"
-            android:parentActivityName=".Activity.ProgramTestActivity"
+            android:name=".ui.activity.CooperAtlitActivity"
+            android:parentActivityName=".ui.activity.ProgramTestActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".Activity.BalkeDataActivity"
+            android:name=".ui.activity.BalkeDataActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.BalkePelatihActivity"
+            android:name=".ui.activity.BalkePelatihActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".Activity.BalkeAtlitActivity"
-            android:parentActivityName=".Activity.ProgramTestActivity"
+            android:name=".ui.activity.BalkeAtlitActivity"
+            android:parentActivityName=".ui.activity.ProgramTestActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".Activity.ProgramTestActivity"
+            android:name=".ui.activity.ProgramTestActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.cooper"
+            android:name=".ui.activity.cooperPojo"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.kebugaran"
+            android:name=".ui.activity.KebugaranActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.BerandaActivity"
+            android:name=".ui.activity.BerandaActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.RegisterAtlitActivity"
+            android:name=".ui.activity.RegisterAtlitActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".Activity.RegisterPelatihActivity"
+            android:name=".ui.activity.RegisterPelatihActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".Activity.RegisterActivity"
+            android:name=".ui.activity.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.LoginActivity"
+            android:name=".ui.activity.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -125,7 +125,7 @@
         </activity>
 
         <service
-            android:name=".Utils.LocationService"
+            android:name=".utils.LocationService"
             android:enabled="true"
             android:exported="false" />
     </application>

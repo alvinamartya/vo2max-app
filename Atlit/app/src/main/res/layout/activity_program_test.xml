@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.ProgramTestActivity">
+    tools:context=".ui.activity.ProgramTestActivity">
     <include layout="@layout/view_toolbar" />
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/balke" />
+            android:text="@string/balkePojo" />
 
         <Button
             android:id="@+id/btnBeep"
@@ -35,6 +35,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/cooper" />
+            android:text="@string/cooperPojo" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

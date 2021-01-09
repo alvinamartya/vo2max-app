@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.CooperAtlitActivity">
+    tools:context=".ui.activity.CooperAtlitActivity">
     <include layout="@layout/view_toolbar" />
     <TextView
         android:id="@+id/tvHeader"

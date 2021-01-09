@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
-    tools:context=".Activity.CooperPelatihActivity">
+    tools:context=".ui.activity.CooperPelatihActivity">
 
     <include
         android:id="@+id/v_toolbar"

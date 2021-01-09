@@ -2,7 +2,7 @@
     <string name="app_name">Atlit</string>
     <string name="user_id">User ID</string>
     <string name="password">Password</string>
-    <string name="atlit">Atlit</string>
+    <string name="atlitPojo">Atlit</string>
     <string name="pelatih">Pelatih</string>
     <string name="nama">Nama</string>
     <string name="tanggal">Tanggal Lahir</string>
@@ -35,14 +35,14 @@
     <string name="menu_pelatih">Menu Pelatih</string>
     <string name="kebugaran">KEBUGARAN</string>
     <string name="vo2max">VO2MAX</string>
-    <string name="cooper">Cooper Test</string>
+    <string name="cooperPojo">Cooper Test</string>
     <string name="cooper2">Cooper</string>
     <string name="bugar_1">- Kebugaran adalah kemampuan dan daya tahan fisik seseorang dalam melakukan berbagai aktifitas kehidupan sehari-hari, tanpa mengalami kelelahan. </string>
     <string name="bugar_2">- Daya tahan merupakan salah satu komponen biometer atau dasar dalam setiap cabang olahraga. Komponen biokmeter daya tahan digunakan sebagai tolak ukur untuk mengetahui tentang kebugaran (Physical fitness) olahragawan.</string>
     <string name="vo2max1">- Vo2max adalah volume maksimal O2, Yang diproses oleh tubuh pada saat melakukan kegiatan yang intensif.</string>
     <string name="vo2maz2">- VO2MAX merupakan indikator tingkat kebugaran seseorang untuk dijadikan sebagai dasar pembuatan program latihan daya tahan fisik olahragawan. Untuk mengukur VO2MAX, ada beberapa tes yang lazim digunakan, yaitu : Cooper, Balke, dan Beep Test.</string>
     <string name="beep">Beep</string>
-    <string name="balke">Balke</string>
+    <string name="balkePojo">Balke</string>
     <string name="balke_vo2max">Balke vo2max</string>
     <string name="cooper_vo2max">Cooper vo2max</string>
     <string name="no">No</string>
@@ -117,7 +117,7 @@ yang dibutuhkan atlet yang menjalankan lari 2,4 Km</string>
 \nKet: time(menit)</string>
 
     <string name="balkedata1">\tBalke adalah salah satu cara paling tua dalam memonitor dan mengukur
-perkembangan Vo2max bagi seorang atlit. Tes ini sangat umum digunakan oleh
+perkembangan Vo2max bagi seorang atlitPojo. Tes ini sangat umum digunakan oleh
 pelatih sepakbola sehingga mudah dimengerti bagi peserta.</string>
     <string name="balkedata2">Cara melakukan tes lari 15 menit
 

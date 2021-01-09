@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.ChartActivity">
+    tools:context=".ui.activity.ChartActivity">
 
     <include
         android:id="@+id/v_toolbar"

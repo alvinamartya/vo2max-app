@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.MetodeActivity">
+    tools:context=".ui.activity.MetodeActivity">
 
     <include
         android:id="@+id/v_toolbar"
@@ -87,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/balke" />
+            android:text="@string/balkePojo" />
 
         <Button
             android:id="@+id/btnBeep"

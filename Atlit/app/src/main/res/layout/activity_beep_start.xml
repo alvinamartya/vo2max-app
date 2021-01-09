@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".Activity.BeepStartActivity">
+    tools:context=".ui.activity.BeepStartActivity">
 
     <include layout="@layout/view_toolbar" />
 
