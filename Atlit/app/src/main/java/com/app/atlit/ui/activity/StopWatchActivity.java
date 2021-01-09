@@ -140,7 +140,7 @@ public class StopWatchActivity extends AppCompatActivity {
                 isStart = true;
 
                 timer = new Timer();
-                timer.scheduleAtFixedRate(task, 0, 1000);
+                timer.scheduleAtFixedRate(task, 0, 10);
                 btnStart.setText("Finish");
             }
         });
