@@ -19,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.app.atlit.R;
 import com.app.atlit.utils.LoginSharedPreference;
@@ -29,7 +30,7 @@ import java.util.ArrayList;
 public class BerandaActivity extends AppCompatActivity {
     private LoginSharedPreference loginsharedpreference;
     private Toolbar toolbar;
-    private Button btnProfile, btnTentang, btnMetode, btnProgramTest;
+    private LinearLayout btnProfile, btnTentang, btnMetode, btnProgramTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,20 +69,17 @@ public class BerandaActivity extends AppCompatActivity {
             finish();
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         });
-        btnProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (loginsharedpreference.getUserLogin().getAkses().equals("atlit")) {
-                    Intent intent = new Intent(BerandaActivity.this, AtlitProfileActivity.class);
-                    startActivity(intent);
-                    finish();
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                } else {
-                    Intent intent = new Intent(BerandaActivity.this, PelatihProfileActivity.class);
-                    startActivity(intent);
-                    finish();
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                }
+        btnProfile.setOnClickListener(view -> {
+            if (loginsharedpreference.getUserLogin().getAkses().equals("atlit")) {
+                Intent intent = new Intent(BerandaActivity.this, AtlitProfileActivity.class);
+                startActivity(intent);
+                finish();
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            } else {
+                Intent intent = new Intent(BerandaActivity.this, PelatihProfileActivity.class);
+                startActivity(intent);
+                finish();
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }

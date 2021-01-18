@@ -6,13 +6,14 @@ import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.app.atlit.R;
 import com.app.atlit.utils.LoginSharedPreference;
 
 public class ProgramTestActivity extends AppCompatActivity {
     private Toolbar toolbar;
-    private Button btnBalke, btnBeep, btnCooper;
+    private LinearLayout btnBalke, btnBeep, btnCooper;
     private LoginSharedPreference loginsharedpreference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

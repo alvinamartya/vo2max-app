@@ -14,34 +14,94 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnProfile"
-            style="@style/LayoutButton"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/profile" />
+            android:padding="20dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/btnProfile"
+                android:background="?attr/selectableItemBackground"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:src="@drawable/image4"
+                    android:padding="10dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile"
+                    android:textSize="20sp"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/btnTentang"
+                android:background="?attr/selectableItemBackground"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:src="@drawable/image3"
+                    android:padding="10dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tentang_kebugaran"
+                    android:textSize="20sp"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/btnTentang"
-            style="@style/LayoutButton.DiffTop"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/tentang_kebugaran" />
-        <Button
-            android:id="@+id/btnMetode"
-            style="@style/LayoutButton.DiffTop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/metode" />
-        <Button
-            android:id="@+id/btnProgramTest"
-            style="@style/LayoutButton.DiffTop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/program_test" />
+            android:padding="20dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/btnMetode"
+                android:background="?attr/selectableItemBackground"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:src="@drawable/image2"
+                    android:padding="10dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/metode"
+                    android:textSize="20sp"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/btnProgramTest"
+                android:background="?attr/selectableItemBackground"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:src="@drawable/image"
+                    android:padding="10dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/program_test"
+                    android:textSize="20sp"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
