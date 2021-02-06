@@ -40,6 +40,7 @@ public class BeepStartActivity extends AppCompatActivity {
     private long sec = 0, l = 0, d = 0;
     private int level = 0;
     private final ArrayList<Float> seconds = new ArrayList<>();
+    private final ArrayList<Integer> changeShuttles = new ArrayList<>();
     private final ArrayList<BeepTablePojo> beepTablePojo = new ArrayList<>();
 
     @Override
@@ -82,9 +83,14 @@ public class BeepStartActivity extends AppCompatActivity {
             beepTablePojo.add(new BeepTablePojo(20, 15, 4.27f));
             beepTablePojo.add(new BeepTablePojo(21, 16, 3.94f));
 
+            int shut = 0;
             for (BeepTablePojo x : beepTablePojo) {
                 for (int i = 0; i < x.getShuttles(); i++) {
+                    shut++;
                     seconds.add(x.getSecondsPerShuttle());
+                    if(x.getLevel() > 1 && i == 0) {
+                        changeShuttles.add(shut - 1);
+                    }
                 }
             }
         } else {
@@ -110,18 +116,22 @@ public class BeepStartActivity extends AppCompatActivity {
             beepTablePojo.add(new BeepTablePojo(20, 15, 4.11f));
             beepTablePojo.add(new BeepTablePojo(21, 16, 4f));
 
+            int shut = 0;
             for (BeepTablePojo x : beepTablePojo) {
                 for (int i = 0; i < x.getShuttles(); i++) {
+                    shut++;
                     seconds.add(x.getSecondsPerShuttle());
+                    if(x.getLevel() > 1 && i == 0) {
+                        changeShuttles.add(shut - 1);
+                    }
                 }
             }
         }
 
-        gameView = new GameView(this, seconds);
+        gameView = new GameView(this, seconds,changeShuttles);
         frameLayout.addView(gameView);
         mediaPlayer = MediaPlayer.create(this, R.raw.beeptest);
         btnStart.setOnClickListener(view -> {
-
             if (loginsharedpreference.getPelari() == null) {
                 Toast.makeText(BeepStartActivity.this, "Pastikan anda telah memilih pelari", Toast.LENGTH_SHORT).show();
                 return;

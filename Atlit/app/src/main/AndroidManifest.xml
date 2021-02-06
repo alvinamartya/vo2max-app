@@ -95,7 +95,7 @@
             android:name=".ui.activity.ProgramTestActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.activity.cooperPojo"
+            android:name=".ui.activity.CooperActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.activity.KebugaranActivity"

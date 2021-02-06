@@ -82,6 +82,6 @@ public class BalkeMetodeActivity extends AppCompatActivity {
     private void initToolbar() {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Cooper");
+        getSupportActionBar().setTitle("Balke");
     }
 }

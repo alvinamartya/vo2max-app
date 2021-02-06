@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.activity.cooperPojo">
+    tools:context=".ui.activity.CooperActivity">
 
     <include
         android:id="@+id/v_toolbar"

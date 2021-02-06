@@ -17,6 +17,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.atlit.model.pojo.BeepTablePojo;
 import com.app.atlit.ui.dialog.SolusiDialog;
 import com.app.atlit.R;
 import com.app.atlit.utils.api.ApiClient;
@@ -25,6 +26,7 @@ import com.app.atlit.utils.LoginSharedPreference;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -48,6 +50,7 @@ public class BeepAtlitActivity extends AppCompatActivity {
     private LinearLayout error_layout, data_beep;
     private ApiInterface apiInterface;
     private Toolbar toolbar;
+    private final ArrayList<BeepTablePojo> beepTablePojo = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +118,8 @@ public class BeepAtlitActivity extends AppCompatActivity {
             }
 
             isProcess = true;
-            int Tb = getTotalKumulatif(getIntent().getIntExtra(EXTRA_LEVEL, 0)) + getShuttle(getIntent().getIntExtra(EXTRA_LEVEL, 0));
+            int Tb = getShuttle(getIntent().getIntExtra(EXTRA_LEVEL, 0));
+            Log.e("shuttle", String.valueOf(Tb));
             double vo2max = 15 + (0.3689295 * Tb) + (-0.000349 * Tb * Tb);
             edtVo2Max.setText(String.valueOf((float)vo2max));
             Log.e(TAG, "onClick: " + loginsharedpreference.getPelari().getJk());
@@ -412,15 +416,6 @@ public class BeepAtlitActivity extends AppCompatActivity {
                         (umur > 60 && vo2max > 44.2)
         ) return "Superior";
         return "";
-    }
-
-    private int getTotalKumulatif(int level) {
-        int result = 0;
-        for(int i = 0; i < level; i++) {
-            result += getShuttle(i+1);
-        }
-
-        return result;
     }
 
     private void initToolbar() {

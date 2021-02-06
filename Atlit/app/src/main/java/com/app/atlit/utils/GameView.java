@@ -35,12 +35,14 @@ public class GameView extends SurfaceView implements Runnable {
     private long lastFrameChangeTime = 0;
     private final int frameLengthInMillisecond = 50;
     private final List<Float> seconds;
+    private final List<Integer> changeShuttles;
+    int delay = 0;
 
     private final Rect frameToDraw = new Rect(0, 0, frameWidth, frameHeight);
 
     private final RectF whereToDraw = new RectF(manXPos, manYPos, manXPos + frameWidth, frameHeight);
 
-    public GameView(Context context, List<Float> seconds) {
+    public GameView(Context context, List<Float> seconds, List<Integer> changeShuttles) {
         super(context);
         ourHolder = getHolder();
         bitmapRunningMan = BitmapFactory.decodeResource(getResources(), R.drawable.running_man);
@@ -49,6 +51,7 @@ public class GameView extends SurfaceView implements Runnable {
         bitmapRunningMan2 = BitmapFactory.decodeResource(getResources(), R.drawable.running_man2);
         bitmapRunningMan2 = Bitmap.createScaledBitmap(bitmapRunningMan2, frameWidth * frameCount, frameHeight, false);
         this.seconds = seconds;
+        this.changeShuttles = changeShuttles;
     }
 
     @Override
@@ -67,7 +70,6 @@ public class GameView extends SurfaceView implements Runnable {
     }
 
     public void update() {
-        Log.e("runspeed", getRunSpeedPerSecond() + ";seconds = " + seconds.get(shuttle) + ";shuttle = " + shuttle);
         if (isMoving) {
             if (isEven(shuttle)) {
                 manXPos = manXPos + getRunSpeedPerSecond() / fps;
@@ -79,18 +81,21 @@ public class GameView extends SurfaceView implements Runnable {
                 manXPos = manXPos - getRunSpeedPerSecond() / fps;
                 if (manXPos <= 10) {
                     shuttle = shuttle + 1;
-                    manXPos = 10;
+                    if (shuttle > 8) {
+                        manXPos = 0;
+                    } else {
+                        manXPos = 10;
+                    }
                 }
             }
         }
     }
 
-
     public boolean isEven(int x) {
         return x % 2 == 0;
     }
 
-    public  float getRunSpeedPerSecond() {
+    public float getRunSpeedPerSecond() {
         return ((float) getWidth() - 20f) / seconds.get(shuttle);
     }
 

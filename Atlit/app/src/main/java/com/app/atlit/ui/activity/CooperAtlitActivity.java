@@ -80,17 +80,19 @@ public class CooperAtlitActivity extends AppCompatActivity {
         loginsharedpreference = new LoginSharedPreference(this);
         mApiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        int ms = getIntent().getIntExtra(Time_Key, 0);
-        long m = ms / 60 % 60;
-        long h = ms / 60 / 60;
+        long ms = getIntent().getIntExtra(Time_Key, 0);
+        Log.e("Time", String.valueOf(ms));
+        long sec = ms / 1000;
+        long m = sec / 60 % 60;
+        long s = sec % 60;
 
         progress = findViewById(R.id.progress);
         error_layout = findViewById(R.id.error_layout);
         data_cooper = findViewById(R.id.ll_data_cooper);
         error_txt_cause = findViewById(R.id.error_txt_cause);
 
-        edtWaktu.setText(String.valueOf(h));
-        edtDetik.setText(String.valueOf(m));
+        edtWaktu.setText(String.valueOf(m));
+        edtDetik.setText(String.valueOf(s));
         edtWaktu.setEnabled(false);
         edtDetik.setEnabled(false);
 
@@ -130,9 +132,8 @@ public class CooperAtlitActivity extends AppCompatActivity {
             } else {
                 try {
                     char jk = rbL.isChecked() == true ? 'l' : 'p';
-                    double waktu = Double.parseDouble(edtWaktu.getText().toString()) + (Double.parseDouble(edtDetik.getText().toString()) / 60);
-                    Log.e(TAG, "onClick: " + waktu);
-                    double vo2max = 85.95 - (3.079 * waktu);
+                    Log.e(TAG, "onClick: " + sec);
+                    double vo2max = 85.95 - (3.079 * sec);
                     String tingkatKebugaran = tableVo2Max(
                             Integer.parseInt(edtUmur.getText().toString()),
                             vo2max,

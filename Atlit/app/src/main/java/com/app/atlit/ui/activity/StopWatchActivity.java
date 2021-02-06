@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,7 +58,7 @@ public class StopWatchActivity extends AppCompatActivity {
         timer = new Timer();
 
         if (keyMethod.equals("balke")) {
-            ms = 15 * 60 * 60 * 100;
+            ms = 15 * 60 * 1000;
             initToolbar("Balke");
         } else {
             initToolbar("Cooper");
@@ -84,7 +85,7 @@ public class StopWatchActivity extends AppCompatActivity {
                                         if (keyMethod.equals("balke") && ms <= 0) {
                                             sendBalkeResult(getDistance(dataSnapshot));
                                         } else if (keyMethod.equals("cooper") && getDistance(dataSnapshot) >= 2400) {
-                                            sendCooperResult(ms);
+                                            sendCooperResult();
                                         }
 
                                         if (isLocationChanged) {
@@ -140,7 +141,7 @@ public class StopWatchActivity extends AppCompatActivity {
                 isStart = true;
 
                 timer = new Timer();
-                timer.scheduleAtFixedRate(task, 0, 10);
+                timer.scheduleAtFixedRate(task, 0, 1);
                 btnStart.setText("Finish");
             }
         });
@@ -153,20 +154,22 @@ public class StopWatchActivity extends AppCompatActivity {
         if(mode.equals("balke")) {
             sendBalkeResult(x);
         } else {
-            sendCooperResult(x);
+            sendCooperResult();
         }
     }
 
     private void setTime(int msec) {
-        long sec = msec / 100;
+        long sec = msec / 1000;
+        long mil = msec % 1000;
         long s = sec % 60;
         long m = sec / 60 % 60;
-        long h = sec / 60 / 60;
+        long h = sec / 60 / 60 % 60;
 
+        String mill = String.valueOf(mil).length() == 1 ? "0" + mil : String.valueOf(mil);
         String seconds = String.valueOf(s).length() == 1 ? "0" + s : String.valueOf(s);
         String minutes = String.valueOf(m).length() == 1 ? "0" + m : String.valueOf(m);
         String hours = String.valueOf(h).length() == 1 ? "0" + h : String.valueOf(h);
-        String time = hours + ":" + minutes + ":" + seconds;
+        String time = hours + ":" + minutes + ":" + seconds + "." + mill;
         tvTime.setText(time);
     }
 
@@ -185,9 +188,10 @@ public class StopWatchActivity extends AppCompatActivity {
         timer.purge();
     }
 
-    private void sendCooperResult(double msec) {
+    private void sendCooperResult() {
         Intent intent = new Intent(StopWatchActivity.this, CooperAtlitActivity.class);
-        intent.putExtra(CooperAtlitActivity.Time_Key, msec);
+        Log.e("Time", String.valueOf(ms));
+        intent.putExtra(CooperAtlitActivity.Time_Key, ms);
         startActivity(intent);
         stopLocationService();
         timer.cancel();

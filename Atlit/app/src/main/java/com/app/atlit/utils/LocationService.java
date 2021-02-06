@@ -6,6 +6,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -34,7 +35,7 @@ import java.util.UUID;
 public class LocationService extends Service {
     private static final String TAG = "StopWatchGPS";
     private LocationManager mLocationManager = null;
-    private static final int LOCATION_INTERVAL = 100;
+    private static final int LOCATION_INTERVAL = 300;
     private static final float LOCATION_DISTANCE = 10f;
 
     private class LocationListener implements android.location.LocationListener {
@@ -49,6 +50,7 @@ public class LocationService extends Service {
 
         @Override
         public void onLocationChanged(Location location) {
+
             FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context);
             if (Constants.id == null) {
                 if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -117,7 +119,8 @@ public class LocationService extends Service {
 
     LocationListener[] mLocationListeners = new LocationListener[]{
             new LocationListener(LocationManager.GPS_PROVIDER),
-            new LocationListener(LocationManager.NETWORK_PROVIDER)
+            new LocationListener(LocationManager.NETWORK_PROVIDER),
+            new LocationListener(LocationManager.PASSIVE_PROVIDER)
     };
 
     @Override
@@ -135,24 +138,28 @@ public class LocationService extends Service {
     @Override
     public void onCreate() {
         Log.e(TAG, "onCreate");
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+
         initializeLocationManager();
-        try {
-            mLocationManager.requestLocationUpdates(
-                    LocationManager.NETWORK_PROVIDER, LOCATION_INTERVAL, LOCATION_DISTANCE,
-                    mLocationListeners[1]);
-        } catch (java.lang.SecurityException ex) {
-            Log.i(TAG, "fail to request location update, ignore", ex);
-        } catch (IllegalArgumentException ex) {
-            Log.d(TAG, "network provider does not exist, " + ex.getMessage());
+        String provider = mLocationManager.getBestProvider(criteria, false);
+
+        LocationListener listener = null;
+        if(provider.equals(LocationManager.GPS_PROVIDER)) {
+            listener = mLocationListeners[0];
+        } else if (provider.equals(LocationManager.NETWORK_PROVIDER)) {
+            listener = mLocationListeners[1];
+        }  else if (provider.equals(LocationManager.PASSIVE_PROVIDER)) {
+            listener = mLocationListeners[2];
         }
+
         try {
             mLocationManager.requestLocationUpdates(
-                    LocationManager.GPS_PROVIDER, LOCATION_INTERVAL, LOCATION_DISTANCE,
-                    mLocationListeners[0]);
+                    provider, LOCATION_INTERVAL, LOCATION_DISTANCE, listener);
         } catch (java.lang.SecurityException ex) {
             Log.i(TAG, "fail to request location update, ignore", ex);
         } catch (IllegalArgumentException ex) {
-            Log.d(TAG, "gps provider does not exist " + ex.getMessage());
+            Log.d(TAG, "provider does not exist, " + ex.getMessage());
         }
     }
 

@@ -4,6 +4,7 @@ public class BeepTablePojo {
     private int level;
     private int shuttles;
     private float secondsPerShuttle;
+    private boolean isShuttle;
 
     public BeepTablePojo() {
     }
